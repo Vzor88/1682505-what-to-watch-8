@@ -1,3 +1,5 @@
+import {SIZES} from '../../consts';
+
 function MyFilm(): JSX.Element {
   const url = ' ';
   return (
@@ -16,7 +18,7 @@ function MyFilm(): JSX.Element {
         <ul className="user-block">
           <li className="user-block__item">
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+              <img src="img/avatar.jpg" alt="User avatar" width={SIZES.AVATAR.WIDTH} height={SIZES.AVATAR.HEIGHT}/>
             </div>
           </li>
           <li className="user-block__item">

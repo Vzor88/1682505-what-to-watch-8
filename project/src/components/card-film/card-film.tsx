@@ -1,11 +1,12 @@
-import {CardFilmProps} from '../../types/card-film';
+import {SIZES} from './consts';
 
-const SIZES = {
-  width: 280,
-  height: 175,
-};
+type CardFilmProps = {
+  previewImage: string;
+  name: string;
+}
 
-function CardFilm({previewImage, name}: CardFilmProps): JSX.Element {
+function CardFilm(props: CardFilmProps): JSX.Element {
+  const {previewImage, name} = props;
   return (
     <article className="small-film-card catalog__films-card">
       <div className="small-film-card__image">

@@ -1,4 +1,4 @@
-export const DataComments = [
+export const DATA_COMMENTS = [
   {
     id: 1,
     user: {

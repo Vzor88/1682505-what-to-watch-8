@@ -1,4 +1,19 @@
-import {MovieProps} from '../../types/movie';
+import {SIZES} from '../../consts';
+import {COUNT_SHORT_LIST_STARRING} from './consts';
+
+type MovieProps = {
+  name: string;
+  posterImage: string;
+  backgroundImage: string;
+  genre: string;
+  released: number;
+  rating: number;
+  scoresCount: number;
+  description: string;
+  director: string;
+  starring: string[];
+  // runTime: number;
+}
 
 function Movie(props: MovieProps): JSX.Element {
   const {name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring} = props;
@@ -25,7 +40,7 @@ function Movie(props: MovieProps): JSX.Element {
             <ul className="user-block">
               <li className="user-block__item">
                 <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+                  <img src="img/avatar.jpg" alt="User avatar" width={SIZES.AVATAR.WIDTH} height={SIZES.AVATAR.HEIGHT}/>
                 </div>
               </li>
               <li className="user-block__item">
@@ -64,7 +79,7 @@ function Movie(props: MovieProps): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={posterImage} alt={`${name} poster`} width="218" height="327"/>
+              <img src={posterImage} alt={`${name} poster`} width={SIZES.POSTER.WIDTH} height={SIZES.POSTER.HEIGHT}/>
             </div>
 
             <div className="film-card__desc">
@@ -98,7 +113,7 @@ function Movie(props: MovieProps): JSX.Element {
 
               <div className="film-card__text">{description}
                 <p className="film-card__director"><strong>Director: {director}</strong></p>
-                <p className="film-card__starring"><strong>Starring: {`${starring.slice(0,4).join(', ')} and other` }</strong></p>
+                <p className="film-card__starring"><strong>Starring: {`${starring.slice(0, COUNT_SHORT_LIST_STARRING).join(', ')} and other` }</strong></p>
               </div>
             </div>
           </div>
