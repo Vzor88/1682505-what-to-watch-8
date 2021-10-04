@@ -1,6 +1,7 @@
 import {AddReviewProps} from '../../types/add-review';
 
 function AddReview({name, posterImage, backgroundImage}: AddReviewProps): JSX.Element {
+  const url = ' ';
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
@@ -25,7 +26,7 @@ function AddReview({name, posterImage, backgroundImage}: AddReviewProps): JSX.El
                 <a href="film-page.html" className="breadcrumbs__link">{name}</a>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
+                <a href={url} className="breadcrumbs__link">Add review</a>
               </li>
             </ul>
           </nav>
@@ -37,7 +38,7 @@ function AddReview({name, posterImage, backgroundImage}: AddReviewProps): JSX.El
               </div>
             </li>
             <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
+              <a href={url} className="user-block__link">Sign out</a>
             </li>
           </ul>
         </header>

@@ -2,6 +2,7 @@ import {MovieProps} from '../../types/movie';
 
 function Movie(props: MovieProps): JSX.Element {
   const {name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring} = props;
+  const url = ' ';
   return (
     <>
       <section className="film-card film-card--full">
@@ -28,7 +29,7 @@ function Movie(props: MovieProps): JSX.Element {
                 </div>
               </li>
               <li className="user-block__item">
-                <a className="user-block__link">Sign out</a>
+                <a href={url} className="user-block__link">Sign out</a>
               </li>
             </ul>
           </header>
@@ -70,13 +71,13 @@ function Movie(props: MovieProps): JSX.Element {
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
+                    <a href={url} className="film-nav__link">Overview</a>
                   </li>
                   <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
+                    <a href={url} className="film-nav__link">Details</a>
                   </li>
                   <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
+                    <a href={url} className="film-nav__link">Reviews</a>
                   </li>
                 </ul>
               </nav>

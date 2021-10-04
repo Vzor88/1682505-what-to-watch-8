@@ -1,4 +1,5 @@
 function MyFilm(): JSX.Element {
+  const url = ' ';
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -19,7 +20,7 @@ function MyFilm(): JSX.Element {
             </div>
           </li>
           <li className="user-block__item">
-            <a className="user-block__link">Sign out</a>
+            <a href={url} className="user-block__link">Sign out</a>
           </li>
         </ul>
       </header>

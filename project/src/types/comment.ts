@@ -2,7 +2,7 @@ export type CommentProps = {
   user: User
   rating: number;
   comment: string;
-  date: Date;
+  date: string;
 }
 
 type User = {
