@@ -1,27 +1,23 @@
 import {SIZES} from '../../consts';
-import {COUNT_SHORT_LIST_STARRING} from './consts';
 import Footer from '../footer/footer';
 import Logo from '../logo/logo';
 import {DATA_FILMS} from '../../mock/films';
+import {DATA_COMMENTS} from '../../mock/comments';
 import CardFilm from '../card-film/card-film';
+import Comment from '../comment/comment';
 import {Link} from 'react-router-dom';
 
-type MovieProps = {
+type MovieReviewsProps = {
   id: number;
   name: string;
   posterImage: string;
   backgroundImage: string;
   genre: string;
   released: number;
-  rating: number;
-  scoresCount: number;
-  description: string;
-  director: string;
-  starring: string[];
 }
 
-function Movie(props: MovieProps): JSX.Element {
-  const {id, name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring} = props;
+function MovieReviews(props: MovieReviewsProps): JSX.Element {
+  const {id, name, posterImage, backgroundImage, genre, released} = props;
   const url = ' ';
   return (
     <>
@@ -85,29 +81,25 @@ function Movie(props: MovieProps): JSX.Element {
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
+                  <li className="film-nav__item">
                     <Link to={`/films/${id}`} className="film-nav__link">Overview</Link>
                   </li>
                   <li className="film-nav__item">
                     <Link to={`/films/${id}/details`} className="film-nav__link">Details</Link>
                   </li>
-                  <li className="film-nav__item">
+                  <li className="film-nav__item film-nav__item--active">
                     <Link to={`/films/${id}/reviews`} className="film-nav__link">Reviews</Link>
                   </li>
                 </ul>
               </nav>
+              <div className="film-card__reviews film-card__row">
+                <div className="film-card__reviews-col">
+                  {DATA_COMMENTS.slice(0, (DATA_COMMENTS.length + 1) / 2).map((comment) => <Comment key={comment.id} comment={comment.comment} user={comment.user} rating={comment.rating} date={comment.date} />)}
+                </div>
+                <div className="film-card__reviews-col">
+                  {DATA_COMMENTS.slice((DATA_COMMENTS.length + 1) / 2, DATA_COMMENTS.length).map((comment) => <Comment key={comment.id} comment={comment.comment} user={comment.user} rating={comment.rating} date={comment.date} />)}
+                </div>
 
-              <div className="film-rating">
-                <div className="film-rating__score">{rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">{scoresCount} ratings</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">{description}
-                <p className="film-card__director"><strong>Director: {director}</strong></p>
-                <p className="film-card__starring"><strong>Starring: {`${starring.slice(0, COUNT_SHORT_LIST_STARRING).join(', ')} and other` }</strong></p>
               </div>
             </div>
           </div>
@@ -130,4 +122,4 @@ function Movie(props: MovieProps): JSX.Element {
   );
 }
 
-export default Movie;
+export default MovieReviews;
