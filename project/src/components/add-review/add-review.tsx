@@ -1,6 +1,14 @@
-import {AddReviewProps} from '../../types/add-review';
+import {SIZES} from '../../consts';
+import Logo from '../logo/logo';
 
-function AddReview({name, posterImage, backgroundImage}: AddReviewProps): JSX.Element {
+type AddReviewProps = {
+  name: string;
+  posterImage: string;
+  backgroundImage: string;
+}
+
+function AddReview(props: AddReviewProps): JSX.Element {
+  const {name, posterImage, backgroundImage} = props;
   const url = ' ';
   return (
     <section className="film-card film-card--full">
@@ -12,13 +20,8 @@ function AddReview({name, posterImage, backgroundImage}: AddReviewProps): JSX.El
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header">
-          <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+
+          <Logo />
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
@@ -34,7 +37,7 @@ function AddReview({name, posterImage, backgroundImage}: AddReviewProps): JSX.El
           <ul className="user-block">
             <li className="user-block__item">
               <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+                <img src="img/avatar.jpg" alt="User avatar" width={SIZES.AVATAR.WIDTH} height={SIZES.AVATAR.HEIGHT}/>
               </div>
             </li>
             <li className="user-block__item">
@@ -44,7 +47,7 @@ function AddReview({name, posterImage, backgroundImage}: AddReviewProps): JSX.El
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={posterImage} alt={`${name} poster`} width="218" height="327"/>
+          <img src={posterImage} alt={`${name} poster`} width={SIZES.POSTER.WIDTH} height={SIZES.POSTER.HEIGHT}/>
         </div>
       </div>
 

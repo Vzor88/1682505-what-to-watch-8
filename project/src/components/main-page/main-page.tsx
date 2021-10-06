@@ -1,6 +1,19 @@
-import {MainPageProps} from '../../types/main-page';
+import {SIZES} from '../../consts';
+import {DATA_FILMS} from '../../mock/films';
+import CardFilm from '../card-film/card-film';
+import Footer from '../footer/footer';
+import Logo from '../logo/logo';
 
-function MainPage({posterImage, backgroundImage, name, genre, released}: MainPageProps): JSX.Element {
+type MainPageProps = {
+  posterImage: string;
+  backgroundImage: string;
+  name: string;
+  genre: string;
+  released: number;
+}
+
+function MainPage(props: MainPageProps): JSX.Element {
+  const {posterImage, backgroundImage, name, genre, released} = props;
   const url = ' ';
   return (
     <>
@@ -10,17 +23,13 @@ function MainPage({posterImage, backgroundImage, name, genre, released}: MainPag
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header film-card__head">
-          <div className="logo">
-            <a href={url} className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+
+          <Logo />
+
           <ul className="user-block">
             <li className="user-block__item">
               <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+                <img src="img/avatar.jpg" alt="User avatar" width={SIZES.AVATAR.WIDTH} height={SIZES.AVATAR.HEIGHT}/>
               </div>
             </li>
             <li className="user-block__item">
@@ -31,7 +40,7 @@ function MainPage({posterImage, backgroundImage, name, genre, released}: MainPag
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={posterImage} alt={`${name} poster`} width="218" height="327"/>
+              <img src={posterImage} alt={`${name} poster`} width={SIZES.POSTER.WIDTH} height={SIZES.POSTER.HEIGHT}/>
             </div>
             <div className="film-card__desc">
               <h2 className="film-card__title">The Grand Budapest Hotel</h2>
@@ -94,26 +103,17 @@ function MainPage({posterImage, backgroundImage, name, genre, released}: MainPag
             </li>
           </ul>
 
-          <div className="catalog__films-list"> </div>
+          <div className="catalog__films-list">
+            {DATA_FILMS.map((film) => <CardFilm key={film.id} previewImage={film.previewImage} name={film.name} />)}
+          </div>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href={url} className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+        <Footer />
 
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
       </div>
     </>
   );

@@ -1,7 +1,18 @@
-import {CommentProps} from '../../types/comment';
 import dayjs from 'dayjs';
+import {FLOATING_POINT} from './consts';
 
-function Comment({comment, user, rating, date}: CommentProps): JSX.Element {
+type CommentProps = {
+  user: {
+    id: number;
+    name: string;
+  }
+  rating: number;
+  comment: string;
+  date: string;
+}
+
+function Comment(props: CommentProps): JSX.Element {
+  const {comment, user, rating, date} = props;
   return (
     <div className="review">
       <blockquote className="review__quote">
@@ -9,11 +20,11 @@ function Comment({comment, user, rating, date}: CommentProps): JSX.Element {
 
         <footer className="review__details">
           <cite className="review__author">{user.name}</cite>
-          <time className="review__date" dateTime="2016-12-24">{dayjs(date).format('MMMM DD YYYY').toString()}</time>
+          <time className="review__date" dateTime={dayjs(date).format('YYYY-MM-DD').toString()}>{dayjs(date).format('MMMM DD YYYY').toString()}</time>
         </footer>
       </blockquote>
 
-      <div className="review__rating">{rating.toFixed(1)}</div>
+      <div className="review__rating">{rating.toFixed(FLOATING_POINT)}</div>
     </div>
   );
 }

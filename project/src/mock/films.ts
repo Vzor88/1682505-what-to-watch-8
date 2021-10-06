@@ -1,4 +1,4 @@
-export const DataFilms = [
+export const DATA_FILMS = [
   {
     id: 1,
     previewImage: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
