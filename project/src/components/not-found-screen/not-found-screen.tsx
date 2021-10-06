@@ -1,6 +1,7 @@
 import Logo from '../logo/logo';
 import Footer from '../footer/footer';
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 function NotFoundScreen(): JSX.Element {
   return (
@@ -13,8 +14,8 @@ function NotFoundScreen(): JSX.Element {
 
       <div className="sign-in user-page__content">
         <section className="page__screen">
-          <h1>404. Page not found</h1>
-          <a href="/">Вернуться на главную</a>
+          <h1 style={{fontSize:'2.5em'}}>404. Page not found</h1>
+          <Link to="/" style={{textDecoration:'none', color:'#c9b37e', fontSize:'30px', fontWeight:'bold'}}>Вернуться на главную</Link>
         </section>
       </div>
 

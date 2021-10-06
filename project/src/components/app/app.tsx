@@ -1,6 +1,6 @@
 import MainPage from '../main-page/main-page';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
-import {AppRoute} from '../../consts';
+import {AppRoute, AuthorizationStatus} from '../../consts';
 import MyFilm from '../my-list/my-list';
 import Player from '../player/player';
 import SignIn from '../sign-in/sign-in';
@@ -9,6 +9,7 @@ import Movie from '../movie/movie';
 import MovieDetails from '../movie/movie-details';
 import MovieReviews from '../movie/movie-reviews';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
+import PrivateRoute from '../private-route/private-route';
 
 function App(): JSX.Element {
   return (
@@ -23,9 +24,13 @@ function App(): JSX.Element {
             released = {2014}
           />
         </Route>
-        <Route exact path={AppRoute.MyList}>
-          <MyFilm />
-        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.MyList}
+          render={() => <MyFilm />}
+          authorizationStatus={AuthorizationStatus.NoAuth}
+        >
+        </PrivateRoute>
         <Route exact path={AppRoute.Player}>
           <Player />
         </Route>

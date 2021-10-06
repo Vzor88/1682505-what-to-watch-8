@@ -66,7 +66,7 @@ function MovieReviews(props: MovieReviewsProps): JSX.Element {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                <Link to={`/films/${id}/review/`} className="btn film-card__button">Add review</Link>
               </div>
             </div>
           </div>
