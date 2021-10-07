@@ -1,14 +1,11 @@
-import {SIZES} from '../../consts';
-import Logo from '../logo/logo';
+import {SIZES} from '../../../consts';
+import Logo from '../../elements-page/logo/logo';
+import {MovieProps} from '../../../types/movie';
+import UserInfo from '../../elements-page/user-info/user-info';
 
-type AddReviewProps = {
-  name: string;
-  posterImage: string;
-  backgroundImage: string;
-}
-
-function AddReview(props: AddReviewProps): JSX.Element {
-  const {name, posterImage, backgroundImage} = props;
+function AddReview(movie: any): JSX.Element {
+  const addReviewDate:MovieProps = movie.movie;
+  const {name, posterImage, backgroundImage} = addReviewDate;
   const url = ' ';
   return (
     <section className="film-card film-card--full">
@@ -34,16 +31,8 @@ function AddReview(props: AddReviewProps): JSX.Element {
             </ul>
           </nav>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width={SIZES.AVATAR.WIDTH} height={SIZES.AVATAR.HEIGHT}/>
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a href={url} className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          <UserInfo />
+
         </header>
 
         <div className="film-card__poster film-card__poster--small">

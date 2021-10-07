@@ -3,10 +3,6 @@ export const SIZES = {
     WIDTH: 218,
     HEIGHT: 327,
   },
-  AVATAR: {
-    WIDTH: 63,
-    HEIGHT: 63,
-  },
 };
 
 export enum AppRoute {
@@ -23,5 +19,47 @@ export enum AppRoute {
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN',
 }
+
+export const GENRES_LIST: {name: string, isActive: boolean}[] = [
+  {
+    name: 'All genres',
+    isActive: true,
+  },
+  {
+    name: 'Comedies',
+    isActive: false,
+  },
+  {
+    name: 'Crime',
+    isActive: false,
+  },
+  {
+    name: 'Documentary',
+    isActive: false,
+  },
+  {
+    name: 'Dramas',
+    isActive: false,
+  },
+  {
+    name: 'Horror',
+    isActive: false,
+  },
+  {
+    name: 'Kids & Family',
+    isActive: false,
+  },
+  {
+    name: 'Romance',
+    isActive: false,
+  },
+  {
+    name: 'Sci-Fi',
+    isActive: false,
+  },
+  {
+    name: 'Thrillers',
+    isActive: false,
+  },
+];

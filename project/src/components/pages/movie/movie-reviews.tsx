@@ -1,24 +1,16 @@
-import {SIZES} from '../../consts';
-import Footer from '../footer/footer';
-import Logo from '../logo/logo';
-import {DATA_FILMS} from '../../mock/films';
-import {DATA_COMMENTS} from '../../mock/comments';
-import CardFilm from '../card-film/card-film';
-import Comment from '../comment/comment';
+import {SIZES} from '../../../consts';
+import Footer from '../../elements-page/footer/footer';
+import Logo from '../../elements-page/logo/logo';
+import {DATA_COMMENTS} from '../../../mock/comments';
+import Comment from '../../elements-page/comment/comment';
 import {Link} from 'react-router-dom';
+import {MovieProps} from '../../../types/movie';
+import SmallFilmsList from '../../elements-page/small-films-list/small-films-list';
+import UserInfo from '../../elements-page/user-info/user-info';
 
-type MovieReviewsProps = {
-  id: number;
-  name: string;
-  posterImage: string;
-  backgroundImage: string;
-  genre: string;
-  released: number;
-}
-
-function MovieReviews(props: MovieReviewsProps): JSX.Element {
-  const {id, name, posterImage, backgroundImage, genre, released} = props;
-  const url = ' ';
+function MovieReviews(movie: any): JSX.Element {
+  const movieReviewsDate:MovieProps = movie.movie;
+  const {id, name, posterImage, backgroundImage, genre, released} = movieReviewsDate;
   return (
     <>
       <section className="film-card film-card--full">
@@ -32,17 +24,8 @@ function MovieReviews(props: MovieReviewsProps): JSX.Element {
           <header className="page-header film-card__head">
 
             <Logo />
+            <UserInfo />
 
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width={SIZES.AVATAR.WIDTH} height={SIZES.AVATAR.HEIGHT}/>
-                </div>
-              </li>
-              <li className="user-block__item">
-                <a href={url} className="user-block__link">Sign out</a>
-              </li>
-            </ul>
           </header>
 
           <div className="film-card__wrap">
@@ -110,9 +93,8 @@ function MovieReviews(props: MovieReviewsProps): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <div className="catalog__films-list">
-            {DATA_FILMS.slice(0,4).map((film) => <CardFilm key={film.id} previewImage={film.previewImage} name={film.name} />)}
-          </div>
+          <SmallFilmsList />
+
         </section>
 
         <Footer />

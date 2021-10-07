@@ -1,28 +1,15 @@
-import {SIZES} from '../../consts';
+import {SIZES} from '../../../consts';
 import {COUNT_SHORT_LIST_STARRING} from './consts';
-import Footer from '../footer/footer';
-import Logo from '../logo/logo';
-import {DATA_FILMS} from '../../mock/films';
-import CardFilm from '../card-film/card-film';
+import Footer from '../../elements-page/footer/footer';
+import Logo from '../../elements-page/logo/logo';
 import {Link} from 'react-router-dom';
+import {MovieProps} from '../../../types/movie';
+import SmallFilmsList from '../../elements-page/small-films-list/small-films-list';
+import UserInfo from '../../elements-page/user-info/user-info';
 
-type MovieProps = {
-  id: number;
-  name: string;
-  posterImage: string;
-  backgroundImage: string;
-  genre: string;
-  released: number;
-  rating: number;
-  scoresCount: number;
-  description: string;
-  director: string;
-  starring: string[];
-}
-
-function Movie(props: MovieProps): JSX.Element {
-  const {id, name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring} = props;
-  const url = ' ';
+function Movie(movie: any): JSX.Element {
+  const movieDate:MovieProps = movie.movie;
+  const {id, name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring} = movieDate;
   return (
     <>
       <section className="film-card film-card--full">
@@ -36,17 +23,8 @@ function Movie(props: MovieProps): JSX.Element {
           <header className="page-header film-card__head">
 
             <Logo />
+            <UserInfo />
 
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width={SIZES.AVATAR.WIDTH} height={SIZES.AVATAR.HEIGHT}/>
-                </div>
-              </li>
-              <li className="user-block__item">
-                <a href={url} className="user-block__link">Sign out</a>
-              </li>
-            </ul>
           </header>
 
           <div className="film-card__wrap">
@@ -118,9 +96,8 @@ function Movie(props: MovieProps): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <div className="catalog__films-list">
-            {DATA_FILMS.slice(0,4).map((film) => <CardFilm key={film.id} previewImage={film.previewImage} name={film.name} />)}
-          </div>
+          <SmallFilmsList />
+
         </section>
 
         <Footer />

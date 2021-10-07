@@ -1,5 +1,5 @@
-import Logo from '../logo/logo';
-import Footer from '../footer/footer';
+import Logo from '../../elements-page/logo/logo';
+import Footer from '../../elements-page/footer/footer';
 import React from 'react';
 import {Link} from 'react-router-dom';
 
