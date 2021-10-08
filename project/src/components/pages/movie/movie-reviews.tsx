@@ -4,11 +4,11 @@ import Logo from '../../elements-page/logo/logo';
 import {DATA_COMMENTS} from '../../../mock/comments';
 import Comment from '../../elements-page/comment/comment';
 import {Link} from 'react-router-dom';
-import {MovieProps} from '../../../types/movie';
+import {FilmProps} from '../../../types/movie';
 import SmallFilmsList from '../../elements-page/small-films-list/small-films-list';
 import UserInfo from '../../elements-page/user-info/user-info';
 
-function MovieReviews(movie: { movie: MovieProps }): JSX.Element {
+function MovieReviews(movie: { movie: FilmProps }): JSX.Element {
   const {id, name, posterImage, backgroundImage, genre, released} = movie.movie;
   return (
     <>

@@ -4,6 +4,7 @@ import React from 'react';
 import {DATA_FILMS} from '../../../mock/films';
 import CardFilm from '../../elements-page/card-film/card-film';
 import UserInfo from '../../elements-page/user-info/user-info';
+import {FilmProps} from '../../../types/movie';
 
 function MyFilm(): JSX.Element {
   return (
@@ -22,7 +23,7 @@ function MyFilm(): JSX.Element {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-          {DATA_FILMS.map((film) => film.isFavorite ? <CardFilm key={film.id} id={film.id} previewImage={film.previewImage} name={film.name} /> : ' ')}
+          {DATA_FILMS.map((film:FilmProps) => film.isFavorite ? <CardFilm key={film.id} id={film.id} previewImage={film.previewImage} name={film.name} /> : ' ')}
         </div>
       </section>
 

@@ -2,7 +2,7 @@ import {SIZES} from '../../../consts';
 import Footer from '../../elements-page/footer/footer';
 import Logo from '../../elements-page/logo/logo';
 import {Link} from 'react-router-dom';
-import {MovieProps} from '../../../types/movie';
+import {FilmProps} from '../../../types/movie';
 import SmallFilmsList from '../../elements-page/small-films-list/small-films-list';
 import UserInfo from '../../elements-page/user-info/user-info';
 
@@ -16,7 +16,7 @@ const generateDuration = (minutes: number): string => {
   return !hours  ? `${minutes}m` : `${hours}h ${minutes}m`;
 };
 
-function MovieDetails(movie: { movie: MovieProps }): JSX.Element {
+function MovieDetails(movie: { movie: FilmProps }): JSX.Element {
   const {id, name, posterImage, backgroundImage, genre, released, director, starring, runTime} = movie.movie;
   return (
     <>

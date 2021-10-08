@@ -1,6 +1,6 @@
-import {MovieProps} from '../types/movie';
+import {FilmProps} from '../types/movie';
 
-export const MOVIE: MovieProps = {
+export const MOVIE: FilmProps = {
   id: 1,
   name: 'The Grand Budapest Hotel',
   posterImage: 'img/the-grand-budapest-hotel-poster.jpg',

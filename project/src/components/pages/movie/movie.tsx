@@ -3,12 +3,12 @@ import {COUNT_SHORT_LIST_STARRING} from './consts';
 import Footer from '../../elements-page/footer/footer';
 import Logo from '../../elements-page/logo/logo';
 import {Link} from 'react-router-dom';
-import {MovieProps} from '../../../types/movie';
+import {FilmProps} from '../../../types/movie';
 import SmallFilmsList from '../../elements-page/small-films-list/small-films-list';
 import UserInfo from '../../elements-page/user-info/user-info';
 import React from 'react';
 
-function Movie(movie: { movie: MovieProps }): JSX.Element {
+function Movie(movie: { movie: FilmProps }): JSX.Element {
   const {id, name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring} = movie.movie;
   return (
     <>

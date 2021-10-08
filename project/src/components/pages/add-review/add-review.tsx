@@ -1,9 +1,9 @@
 import {SIZES} from '../../../consts';
 import Logo from '../../elements-page/logo/logo';
-import {MovieProps} from '../../../types/movie';
+import {FilmProps} from '../../../types/movie';
 import UserInfo from '../../elements-page/user-info/user-info';
 
-function AddReview(movie: { movie: MovieProps }): JSX.Element {
+function AddReview(movie: { movie: FilmProps }): JSX.Element {
   const {name, posterImage, backgroundImage} = movie.movie;
   const url = ' ';
   return (

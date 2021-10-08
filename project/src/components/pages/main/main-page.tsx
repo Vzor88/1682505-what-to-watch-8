@@ -3,12 +3,12 @@ import {DATA_FILMS} from '../../../mock/films';
 import CardFilm from '../../elements-page/card-film/card-film';
 import Footer from '../../elements-page/footer/footer';
 import Logo from '../../elements-page/logo/logo';
-import {MovieProps} from '../../../types/movie';
+import {FilmProps} from '../../../types/movie';
 import React from 'react';
 import GenresList from '../../elements-page/genres-list/genres-list';
 import UserInfo from '../../elements-page/user-info/user-info';
 
-function MainPage(movie: { movie: MovieProps }): JSX.Element {
+function MainPage(movie: { movie: FilmProps }): JSX.Element {
   const {backgroundImage, name, genre, released, posterImage} = movie.movie;
   return (
     <>
@@ -60,7 +60,7 @@ function MainPage(movie: { movie: MovieProps }): JSX.Element {
           <GenresList />
 
           <div className="catalog__films-list">
-            {DATA_FILMS.map((film) => <CardFilm key={film.id} id={film.id} previewImage={film.previewImage} name={film.name} />)}
+            {DATA_FILMS.map((film:FilmProps) => <CardFilm key={film.id} id={film.id} previewImage={film.previewImage} name={film.name} />)}
           </div>
 
           <div className="catalog__more">

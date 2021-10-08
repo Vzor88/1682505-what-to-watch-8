@@ -12,14 +12,15 @@ import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import {MOVIE} from '../../mock/movie';
 import React from 'react';
+import {FilmsProps} from '../../types/movie';
 
-function App(): JSX.Element {
+function App(films: { films: FilmsProps }): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Main}>
           <MainPage
-            movie = {MOVIE}
+            movie={films.films[0]}
           />
         </Route>
         <PrivateRoute
