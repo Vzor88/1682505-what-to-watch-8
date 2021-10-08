@@ -3,9 +3,8 @@ import Logo from '../../elements-page/logo/logo';
 import {MovieProps} from '../../../types/movie';
 import UserInfo from '../../elements-page/user-info/user-info';
 
-function AddReview(movie: any): JSX.Element {
-  const addReviewDate:MovieProps = movie.movie;
-  const {name, posterImage, backgroundImage} = addReviewDate;
+function AddReview(movie: { movie: MovieProps }): JSX.Element {
+  const {name, posterImage, backgroundImage} = movie.movie;
   const url = ' ';
   return (
     <section className="film-card film-card--full">

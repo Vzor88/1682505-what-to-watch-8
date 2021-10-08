@@ -6,10 +6,10 @@ import {Link} from 'react-router-dom';
 import {MovieProps} from '../../../types/movie';
 import SmallFilmsList from '../../elements-page/small-films-list/small-films-list';
 import UserInfo from '../../elements-page/user-info/user-info';
+import React from 'react';
 
-function Movie(movie: any): JSX.Element {
-  const movieDate:MovieProps = movie.movie;
-  const {id, name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring} = movieDate;
+function Movie(movie: { movie: MovieProps }): JSX.Element {
+  const {id, name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring} = movie.movie;
   return (
     <>
       <section className="film-card film-card--full">

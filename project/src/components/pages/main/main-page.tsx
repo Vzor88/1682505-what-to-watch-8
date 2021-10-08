@@ -8,9 +8,8 @@ import React from 'react';
 import GenresList from '../../elements-page/genres-list/genres-list';
 import UserInfo from '../../elements-page/user-info/user-info';
 
-function MainPage(movie: any): JSX.Element {
-  const mainPageDate:MovieProps = movie.movie;
-  const {backgroundImage, name, genre, released, posterImage} = mainPageDate;
+function MainPage(movie: { movie: MovieProps }): JSX.Element {
+  const {backgroundImage, name, genre, released, posterImage} = movie.movie;
   return (
     <>
       <section className="film-card">

@@ -8,9 +8,8 @@ import {MovieProps} from '../../../types/movie';
 import SmallFilmsList from '../../elements-page/small-films-list/small-films-list';
 import UserInfo from '../../elements-page/user-info/user-info';
 
-function MovieReviews(movie: any): JSX.Element {
-  const movieReviewsDate:MovieProps = movie.movie;
-  const {id, name, posterImage, backgroundImage, genre, released} = movieReviewsDate;
+function MovieReviews(movie: { movie: MovieProps }): JSX.Element {
+  const {id, name, posterImage, backgroundImage, genre, released} = movie.movie;
   return (
     <>
       <section className="film-card film-card--full">

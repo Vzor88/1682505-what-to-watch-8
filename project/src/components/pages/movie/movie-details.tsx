@@ -16,9 +16,8 @@ const generateDuration = (minutes: number): string => {
   return !hours  ? `${minutes}m` : `${hours}h ${minutes}m`;
 };
 
-function MovieDetails(movie: any): JSX.Element {
-  const movieDetailsDate:MovieProps = movie.movie;
-  const {id, name, posterImage, backgroundImage, genre, released, director, starring, runTime} = movieDetailsDate;
+function MovieDetails(movie: { movie: MovieProps }): JSX.Element {
+  const {id, name, posterImage, backgroundImage, genre, released, director, starring, runTime} = movie.movie;
   return (
     <>
       <section className="film-card film-card--full">
