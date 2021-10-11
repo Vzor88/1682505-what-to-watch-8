@@ -2,9 +2,10 @@ import {SIZES} from '../../../consts';
 import Footer from '../../elements-page/footer/footer';
 import Logo from '../../elements-page/logo/logo';
 import {Link} from 'react-router-dom';
-import {FilmProps} from '../../../types/movie';
-import SmallFilmsList from '../../elements-page/small-films-list/small-films-list';
+import {FilmProps, FilmsProps} from '../../../types/movie';
+import SmallFilmsList from '../../elements-page/films-list/small-films-list';
 import UserInfo from '../../elements-page/user-info/user-info';
+import React from 'react';
 
 const generateDuration = (minutes: number): string => {
   let hours = 0;
@@ -16,8 +17,10 @@ const generateDuration = (minutes: number): string => {
   return !hours  ? `${minutes}m` : `${hours}h ${minutes}m`;
 };
 
-function MovieDetails(movie: { movie: FilmProps }): JSX.Element {
-  const {id, name, posterImage, backgroundImage, genre, released, director, starring, runTime} = movie.movie;
+function MovieDetails(movies: { activeMovie: FilmProps, movies: FilmsProps, newActiveMovie: any }): JSX.Element {
+  const [activeCard, setActiveCard] = React.useState(movies.activeMovie);
+  movies.newActiveMovie(activeCard);
+  const {id, name, posterImage, backgroundImage, genre, released, director, starring, runTime} = movies.activeMovie;
   return (
     <>
       <section className="film-card film-card--full">
@@ -120,9 +123,17 @@ function MovieDetails(movie: { movie: FilmProps }): JSX.Element {
 
       <div className="page-content">
         <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
+          <h2 className="catalog__title" onMouseMove={()=>{
+            setActiveCard(activeCard);
+          }}
+          >
+            More like this
+          </h2>
 
-          <SmallFilmsList />
+          <SmallFilmsList
+            movies = {movies.movies}
+            activeCard = {setActiveCard}
+          />
 
         </section>
 

@@ -1,15 +1,10 @@
-import {GENRES_LIST} from '../../../consts';
 import React from 'react';
+import {GenreProps} from '../../../types/genres';
 
-type GenresItemProps = {
-  name: string;
-  active: boolean;
-}
-
-function GenreItem(props:GenresItemProps): JSX.Element {
-  const {name, active} = props;
+function GenreItem(props:GenreProps): JSX.Element {
+  const {name, isActive} = props;
   const url = ' ';
-  if(active){
+  if(isActive){
     return (
       <li className="catalog__genres-item catalog__genres-item--active">
         <a href={url} className="catalog__genres-link">{name}</a>
@@ -24,10 +19,10 @@ function GenreItem(props:GenresItemProps): JSX.Element {
   }
 }
 
-function GenresList(): JSX.Element {
+function GenresList(genres: {genres:GenreProps[]}): JSX.Element {
   return (
     <ul className="catalog__genres-list">
-      {GENRES_LIST.map((element) => <GenreItem name={element.name} key={element.name} active={element.isActive} />)}
+      {genres.genres.map((element) => <GenreItem name={element.name} key={element.name} isActive={element.isActive} />)}
     </ul>
   );
 }

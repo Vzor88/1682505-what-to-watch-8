@@ -1,16 +1,20 @@
 import {SIZES} from './consts';
 import {Link} from 'react-router-dom';
+import React from 'react';
+import {FilmProps} from '../../../types/movie';
 
 type CardFilmProps = {
-  id: number;
-  previewImage: string;
-  name: string;
+  film:FilmProps;
+  updateCardFilm: any;
 }
 
 function CardFilm(props: CardFilmProps): JSX.Element {
-  const {previewImage, name, id} = props;
+  const {previewImage, name, id} = props.film;
   return (
-    <article className="small-film-card catalog__films-card">
+    <article className="small-film-card catalog__films-card" onMouseMove={()=> {
+      props.updateCardFilm(props.film);
+    }}
+    >
       <div className="small-film-card__image">
         <img src={previewImage} alt={name} width={SIZES.width} height={SIZES.height}/>
       </div>
@@ -22,4 +26,3 @@ function CardFilm(props: CardFilmProps): JSX.Element {
 }
 
 export default CardFilm;
-

@@ -3,13 +3,15 @@ import {COUNT_SHORT_LIST_STARRING} from './consts';
 import Footer from '../../elements-page/footer/footer';
 import Logo from '../../elements-page/logo/logo';
 import {Link} from 'react-router-dom';
-import {FilmProps} from '../../../types/movie';
-import SmallFilmsList from '../../elements-page/small-films-list/small-films-list';
+import {FilmProps, FilmsProps} from '../../../types/movie';
+import SmallFilmsList from '../../elements-page/films-list/small-films-list';
 import UserInfo from '../../elements-page/user-info/user-info';
 import React from 'react';
 
-function Movie(movie: { movie: FilmProps }): JSX.Element {
-  const {id, name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring} = movie.movie;
+function Movie(movies: { activeMovie: FilmProps, movies: FilmsProps, newActiveMovie: any}): JSX.Element {
+  const [activeCard, setActiveCard] = React.useState(movies.activeMovie);
+  movies.newActiveMovie(activeCard);
+  const {id, name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring} = movies.activeMovie;
   return (
     <>
       <section className="film-card film-card--full">
@@ -94,9 +96,17 @@ function Movie(movie: { movie: FilmProps }): JSX.Element {
 
       <div className="page-content">
         <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
+          <h2 className="catalog__title" onMouseMove={()=>{
+            setActiveCard(activeCard);
+          }}
+          >
+            More like this
+          </h2>
 
-          <SmallFilmsList />
+          <SmallFilmsList
+            movies = {movies.movies}
+            activeCard = {setActiveCard}
+          />
 
         </section>
 

@@ -1,12 +1,19 @@
 import Footer from '../../elements-page/footer/footer';
 import Logo from '../../elements-page/logo/logo';
 import React from 'react';
-import {DATA_FILMS} from '../../../mock/films';
 import CardFilm from '../../elements-page/card-film/card-film';
 import UserInfo from '../../elements-page/user-info/user-info';
-import {FilmProps} from '../../../types/movie';
+import {FilmProps, FilmsProps} from '../../../types/movie';
 
-function MyFilm(): JSX.Element {
+type MyFilmProps = {
+  activeMovie: FilmProps,
+  movies: FilmsProps,
+  newActiveMovie: any
+}
+
+function MyFilm(movies: MyFilmProps): JSX.Element {
+  const [activeCard, setActiveCard] = React.useState(movies.activeMovie);
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -22,8 +29,11 @@ function MyFilm(): JSX.Element {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="catalog__films-list">
-          {DATA_FILMS.map((film:FilmProps) => film.isFavorite ? <CardFilm key={film.id} id={film.id} previewImage={film.previewImage} name={film.name} /> : ' ')}
+        <div className="catalog__films-list" onMouseMove={()=>{
+          movies.newActiveMovie(activeCard);
+        }}
+        >
+          {movies.movies.map((film:FilmProps) => film.isFavorite ? <CardFilm key={film.id} updateCardFilm={setActiveCard} film={film} /> : ' ')}
         </div>
       </section>
 

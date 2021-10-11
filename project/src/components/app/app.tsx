@@ -1,4 +1,4 @@
-import MainPage from '../pages/main/main-page';
+import Main from '../pages/main/main';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../consts';
 import MyFilm from '../pages/my-list/my-list';
@@ -10,24 +10,34 @@ import MovieDetails from '../pages/movie/movie-details';
 import MovieReviews from '../pages/movie/movie-reviews';
 import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
-import {MOVIE} from '../../mock/movie';
 import React from 'react';
-import {FilmsProps} from '../../types/movie';
+import {FilmProps, FilmsProps} from '../../types/movie';
+import {GenreProps} from '../../types/genres';
 
-function App(films: { films: FilmsProps }): JSX.Element {
+type AppProps = {
+  movies: FilmsProps,
+  promoMovie:FilmProps,
+  genres: GenreProps[]
+}
+
+function App(movies: AppProps): JSX.Element {
+  const [activeMovie, setActiveMovie] = React.useState(movies.movies[0]);
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Main}>
-          <MainPage
-            movie={films.films[0]}
+          <Main
+            promoMovie = {movies.movies[0]}
+            movies = {movies.movies}
+            newActiveMovie = {setActiveMovie}
+            genres = {movies.genres}
           />
         </Route>
         <PrivateRoute
-          exact
-          path={AppRoute.MyList}
-          render={() => <MyFilm />}
-          authorizationStatus={AuthorizationStatus.NoAuth}
+          exact path={AppRoute.MyList}
+          render={() => <MyFilm activeMovie = {activeMovie} movies = {movies.movies} newActiveMovie = {setActiveMovie}/>}
+          authorizationStatus={AuthorizationStatus.Auth}
         >
         </PrivateRoute>
         <Route exact path={AppRoute.Player}>
@@ -35,27 +45,34 @@ function App(films: { films: FilmsProps }): JSX.Element {
         </Route>
         <Route exact path={AppRoute.Film}>
           <Movie
-            movie = {MOVIE}
+            activeMovie = {activeMovie}
+            movies = {movies.movies}
+            newActiveMovie = {setActiveMovie}
           />
         </Route>
         <Route exact path={AppRoute.FilmDetails}>
           <MovieDetails
-            movie = {MOVIE}
+            activeMovie = {activeMovie}
+            movies = {movies.movies}
+            newActiveMovie = {setActiveMovie}
           />
         </Route>
         <Route exact path={AppRoute.FilmReviews}>
           <MovieReviews
-            movie = {MOVIE}
+            activeMovie = {activeMovie}
+            movies = {movies.movies}
+            newActiveMovie = {setActiveMovie}
           />
         </Route>
         <Route exact path={AppRoute.SignIn}>
           <SignIn />
         </Route>
-        <Route exact path={AppRoute.AddReview}>
-          <AddReview
-            movie = {MOVIE}
-          />
-        </Route>
+        <PrivateRoute
+          exact path={AppRoute.AddReview}
+          render={() => <AddReview movie = {activeMovie}/>}
+          authorizationStatus={AuthorizationStatus.Auth}
+        >
+        </PrivateRoute>
         <Route>
           <NotFoundScreen />
         </Route>
