@@ -8,9 +8,20 @@ import SmallFilmsList from '../../elements-page/films-list/small-films-list';
 import UserInfo from '../../elements-page/user-info/user-info';
 import React from 'react';
 
-function Movie(movies: { activeMovie: FilmProps, movies: FilmsProps, newActiveMovie: any}): JSX.Element {
-  const [activeCard, setActiveCard] = React.useState(movies.activeMovie);
-  movies.newActiveMovie(activeCard);
+type MovieProps = {
+  activeMovie: FilmProps;
+  movies: FilmsProps;
+  newActiveMovie: (movie: FilmProps) => void;
+}
+
+function Movie(movies: MovieProps): JSX.Element {
+  const [, setActiveCard] = React.useState(movies.activeMovie);
+
+  function handleActiveMovie(movie: FilmProps): void {
+    setActiveCard(movie);
+    movies.newActiveMovie(movie);
+  }
+
   const {id, name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring} = movies.activeMovie;
   return (
     <>
@@ -96,16 +107,13 @@ function Movie(movies: { activeMovie: FilmProps, movies: FilmsProps, newActiveMo
 
       <div className="page-content">
         <section className="catalog catalog--like-this">
-          <h2 className="catalog__title" onMouseMove={()=>{
-            setActiveCard(activeCard);
-          }}
-          >
+          <h2 className="catalog__title">
             More like this
           </h2>
 
           <SmallFilmsList
             movies = {movies.movies}
-            activeCard = {setActiveCard}
+            newActiveCard = {handleActiveMovie}
           />
 
         </section>

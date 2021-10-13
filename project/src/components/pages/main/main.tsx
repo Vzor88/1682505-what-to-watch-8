@@ -11,13 +11,18 @@ import Promo from '../../elements-page/promo/promo';
 type MainProps = {
   promoMovie: FilmProps,
   movies: FilmsProps,
-  newActiveMovie: any,
+  newActiveMovie: (movie: FilmProps) => void,
   genres: GenreProps[]
 }
 
 function Main(movies: MainProps): JSX.Element {
-  const [activeCard, setActiveCard] = React.useState(movies.movies[0]);
-  movies.newActiveMovie(activeCard);
+  const [, setActiveCard] = React.useState(movies.movies[0]);
+
+  function handleActiveMovie(movie: FilmProps): void {
+    setActiveCard(movie);
+    movies.newActiveMovie(movie);
+  }
+
   return (
     <>
       <section className="film-card">
@@ -37,10 +42,8 @@ function Main(movies: MainProps): JSX.Element {
 
       <div className="page-content">
         <section className="catalog">
-          <h2 className="catalog__title visually-hidden" onMouseMove={()=>{
-            setActiveCard(activeCard);
-          }}
-          >Catalog
+          <h2 className="catalog__title visually-hidden">
+            Catalog
           </h2>
 
           <GenresList
@@ -49,7 +52,7 @@ function Main(movies: MainProps): JSX.Element {
 
           <FilmsList
             movies={movies.movies}
-            newActiveMovie={setActiveCard}
+            newActiveCard={handleActiveMovie}
           />
 
           <div className="catalog__more">

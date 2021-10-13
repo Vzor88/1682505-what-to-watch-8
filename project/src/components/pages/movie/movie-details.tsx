@@ -17,9 +17,20 @@ const generateDuration = (minutes: number): string => {
   return !hours  ? `${minutes}m` : `${hours}h ${minutes}m`;
 };
 
-function MovieDetails(movies: { activeMovie: FilmProps, movies: FilmsProps, newActiveMovie: any }): JSX.Element {
-  const [activeCard, setActiveCard] = React.useState(movies.activeMovie);
-  movies.newActiveMovie(activeCard);
+type MovieDetailsProps = {
+  activeMovie: FilmProps;
+  movies: FilmsProps;
+  newActiveMovie: (movie: FilmProps) => void;
+}
+
+function MovieDetails(movies: MovieDetailsProps): JSX.Element {
+  const [, setActiveCard] = React.useState(movies.activeMovie);
+
+  function handleActiveMovie(movie: FilmProps): void {
+    setActiveCard(movie);
+    movies.newActiveMovie(movie);
+  }
+
   const {id, name, posterImage, backgroundImage, genre, released, director, starring, runTime} = movies.activeMovie;
   return (
     <>
@@ -123,16 +134,13 @@ function MovieDetails(movies: { activeMovie: FilmProps, movies: FilmsProps, newA
 
       <div className="page-content">
         <section className="catalog catalog--like-this">
-          <h2 className="catalog__title" onMouseMove={()=>{
-            setActiveCard(activeCard);
-          }}
-          >
+          <h2 className="catalog__title">
             More like this
           </h2>
 
           <SmallFilmsList
             movies = {movies.movies}
-            activeCard = {setActiveCard}
+            newActiveCard = {handleActiveMovie}
           />
 
         </section>

@@ -4,8 +4,8 @@ import React from 'react';
 import {FilmProps} from '../../../types/movie';
 
 type CardFilmProps = {
-  film:FilmProps;
-  updateCardFilm: any;
+  film: FilmProps;
+  updateCardFilm: (movie: FilmProps) => void;
 }
 
 function CardFilm(props: CardFilmProps): JSX.Element {

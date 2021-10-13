@@ -6,13 +6,18 @@ import UserInfo from '../../elements-page/user-info/user-info';
 import {FilmProps, FilmsProps} from '../../../types/movie';
 
 type MyFilmProps = {
-  activeMovie: FilmProps,
-  movies: FilmsProps,
-  newActiveMovie: any
+  activeMovie: FilmProps;
+  movies: FilmsProps;
+  newActiveMovie: (movie: FilmProps) => void;
 }
 
 function MyFilm(movies: MyFilmProps): JSX.Element {
-  const [activeCard, setActiveCard] = React.useState(movies.activeMovie);
+  const [, setActiveCard] = React.useState(movies.activeMovie);
+
+  function handleActiveMovie(movie: FilmProps): void {
+    setActiveCard(movie);
+    movies.newActiveMovie(movie);
+  }
 
   return (
     <div className="user-page">
@@ -29,11 +34,8 @@ function MyFilm(movies: MyFilmProps): JSX.Element {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="catalog__films-list" onMouseMove={()=>{
-          movies.newActiveMovie(activeCard);
-        }}
-        >
-          {movies.movies.map((film:FilmProps) => film.isFavorite ? <CardFilm key={film.id} updateCardFilm={setActiveCard} film={film} /> : ' ')}
+        <div className="catalog__films-list">
+          {movies.movies.map((film:FilmProps) => film.isFavorite ? <CardFilm key={film.id} updateCardFilm={handleActiveMovie} film={film} /> : ' ')}
         </div>
       </section>
 

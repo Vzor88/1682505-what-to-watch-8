@@ -21,7 +21,7 @@ type AppProps = {
 }
 
 function App(movies: AppProps): JSX.Element {
-  const [activeMovie, setActiveMovie] = React.useState(movies.movies[0]);
+  const [activeMovie, setActiveCard] = React.useState(movies.movies[0]);
 
   return (
     <BrowserRouter>
@@ -30,13 +30,13 @@ function App(movies: AppProps): JSX.Element {
           <Main
             promoMovie = {movies.movies[0]}
             movies = {movies.movies}
-            newActiveMovie = {setActiveMovie}
+            newActiveMovie = {setActiveCard}
             genres = {movies.genres}
           />
         </Route>
         <PrivateRoute
           exact path={AppRoute.MyList}
-          render={() => <MyFilm activeMovie = {activeMovie} movies = {movies.movies} newActiveMovie = {setActiveMovie}/>}
+          render={() => <MyFilm activeMovie = {activeMovie} movies = {movies.movies} newActiveMovie = {setActiveCard}/>}
           authorizationStatus={AuthorizationStatus.Auth}
         >
         </PrivateRoute>
@@ -47,21 +47,21 @@ function App(movies: AppProps): JSX.Element {
           <Movie
             activeMovie = {activeMovie}
             movies = {movies.movies}
-            newActiveMovie = {setActiveMovie}
+            newActiveMovie = {setActiveCard}
           />
         </Route>
         <Route exact path={AppRoute.FilmDetails}>
           <MovieDetails
             activeMovie = {activeMovie}
             movies = {movies.movies}
-            newActiveMovie = {setActiveMovie}
+            newActiveMovie = {setActiveCard}
           />
         </Route>
         <Route exact path={AppRoute.FilmReviews}>
           <MovieReviews
             activeMovie = {activeMovie}
             movies = {movies.movies}
-            newActiveMovie = {setActiveMovie}
+            newActiveMovie = {setActiveCard}
           />
         </Route>
         <Route exact path={AppRoute.SignIn}>
