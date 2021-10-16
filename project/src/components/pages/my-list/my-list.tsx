@@ -1,13 +1,13 @@
 import Footer from '../../elements-page/footer/footer';
 import Logo from '../../elements-page/logo/logo';
 import React from 'react';
-import CardFilm from '../../elements-page/card-film/card-film';
 import UserInfo from '../../elements-page/user-info/user-info';
-import {FilmProps, FilmsProps} from '../../../types/movie';
+import {FilmProps} from '../../../types/movie';
+import FilmsList from '../../elements-page/films-list/films-list';
 
 type MyFilmProps = {
   activeMovie: FilmProps;
-  movies: FilmsProps;
+  movies: FilmProps[];
   newActiveMovie: (movie: FilmProps) => void;
 }
 
@@ -34,9 +34,7 @@ function MyFilm(movies: MyFilmProps): JSX.Element {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="catalog__films-list">
-          {movies.movies.map((film:FilmProps) => film.isFavorite ? <CardFilm key={film.id} updateCardFilm={handleActiveMovie} film={film} /> : ' ')}
-        </div>
+        <FilmsList movies={movies.movies} newActiveCard={handleActiveMovie} countFilms={movies.movies.length} isFavorite/>
       </section>
 
       <Footer />

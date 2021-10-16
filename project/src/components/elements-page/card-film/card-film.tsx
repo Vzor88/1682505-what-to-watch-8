@@ -11,7 +11,7 @@ type CardFilmProps = {
 function CardFilm(props: CardFilmProps): JSX.Element {
   const {previewImage, name, id} = props.film;
   return (
-    <article className="small-film-card catalog__films-card" onMouseMove={()=> {
+    <article className="small-film-card catalog__films-card" onMouseEnter={()=> {
       props.updateCardFilm(props.film);
     }}
     >

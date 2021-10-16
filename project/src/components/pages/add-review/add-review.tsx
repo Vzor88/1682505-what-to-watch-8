@@ -4,8 +4,9 @@ import {FilmProps} from '../../../types/movie';
 import UserInfo from '../../elements-page/user-info/user-info';
 import React, {ChangeEvent} from 'react';
 import {Link} from 'react-router-dom';
+import Star from '../../elements-page/star/star';
 
-const Stars = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+const starsValue = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
 function AddReview(movie: { movie: FilmProps }): JSX.Element {
   const [, setValueStar] = React.useState(' ');
@@ -48,16 +49,7 @@ function AddReview(movie: { movie: FilmProps }): JSX.Element {
         <form action="#" className="add-review__form">
           <div className="rating">
             <div className="rating__stars">
-
-              {Stars.map((star) => (
-                <>
-                  <input className="rating__input" id={`star-${star}`} type="radio" name="rating" value={star} onChange={({target}: ChangeEvent<HTMLInputElement>) => {
-                    setValueStar(target.value);
-                  }}
-                  />
-                  <label className="rating__label" htmlFor={`star-${star}`}>Rating {star}</label>
-                </>
-              ))}
+              {starsValue.map((star) => <Star star={star} key={star} updateValueStar={setValueStar} />)}
 
             </div>
           </div>

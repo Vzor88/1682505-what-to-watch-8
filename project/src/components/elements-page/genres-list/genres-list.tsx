@@ -1,7 +1,7 @@
 import React from 'react';
 import {GenreProps} from '../../../types/genres';
 
-function GenreItem(props:GenreProps): JSX.Element {
+function GenreItem(props: GenreProps): JSX.Element {
   const {name, isActive} = props;
   const url = ' ';
   if(isActive){

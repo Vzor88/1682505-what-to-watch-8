@@ -1,6 +1,6 @@
-import {FilmsProps} from '../types/movie';
+import {FilmProps} from '../types/movie';
 
-export const DATA_FILMS: FilmsProps = [
+export const DATA_FILMS: FilmProps[] = [
   {
     id: 1,
     previewImage: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
@@ -36,7 +36,7 @@ export const DATA_FILMS: FilmsProps = [
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan', 'Tony Revoloru', 'Tilda Swinton', 'Tom Wilkinson'],
     runTime: 125,
-    genre: 'Drama',
+    genre: 'Comedies',
     released: 2010,
   },
   {
@@ -55,7 +55,7 @@ export const DATA_FILMS: FilmsProps = [
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan', 'Tony Revoloru', 'Tilda Swinton', 'Tom Wilkinson'],
     runTime: 99,
-    genre: 'Drama',
+    genre: 'Crime',
     released: 2014,
   },
   {
@@ -74,7 +74,7 @@ export const DATA_FILMS: FilmsProps = [
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan', 'Tony Revoloru', 'Tilda Swinton', 'Tom Wilkinson'],
     runTime: 99,
-    genre: 'Drama',
+    genre: 'Documentary',
     released: 2014,
   },
   {
@@ -93,7 +93,7 @@ export const DATA_FILMS: FilmsProps = [
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan', 'Tony Revoloru', 'Tilda Swinton', 'Tom Wilkinson'],
     runTime: 99,
-    genre: 'Drama',
+    genre: 'Horror',
     released: 2014,
   },
   {
@@ -112,7 +112,7 @@ export const DATA_FILMS: FilmsProps = [
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan', 'Tony Revoloru', 'Tilda Swinton', 'Tom Wilkinson'],
     runTime: 99,
-    genre: 'Drama',
+    genre: 'Romance',
     released: 2014,
   },
   {
@@ -150,7 +150,7 @@ export const DATA_FILMS: FilmsProps = [
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan', 'Tony Revoloru', 'Tilda Swinton', 'Tom Wilkinson'],
     runTime: 99,
-    genre: 'Drama',
+    genre: 'Thrillers',
     released: 2014,
   },
   {
