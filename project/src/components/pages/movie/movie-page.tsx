@@ -2,7 +2,7 @@ import {SIZES} from '../../../consts';
 import {COUNT_SHORT_LIST_STARRING} from './consts';
 import Footer from '../../elements-page/footer/footer';
 import Logo from '../../elements-page/logo/logo';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {FilmProps} from '../../../types/movie';
 import UserInfo from '../../elements-page/user-info/user-info';
 import React from 'react';
@@ -11,9 +11,11 @@ import Comment from '../../elements-page/comment/comment';
 import FilmsList from '../../elements-page/films-list/films-list';
 
 type MovieProps = {
-  activeMovie: FilmProps;
   movies: FilmProps[];
-  newActiveMovie: (movie: FilmProps) => void;
+}
+
+type ParamsProps = {
+  id: string;
 }
 
 const COUNT_RENDER_FILMS_LIST = 4;
@@ -28,7 +30,7 @@ const generateDuration = (minutes: number): string => {
   return !hours  ? `${minutes}m` : `${hours}h ${minutes}m`;
 };
 
-function handleClick(event: any):void {
+function handleClickNavElement(event: any):void {
   const filmCardsContent = document.querySelectorAll('.film-card__content');
   const filmNavItem = document.querySelectorAll('.film-nav__item');
   filmCardsContent.forEach((element) => {
@@ -46,14 +48,9 @@ function handleClick(event: any):void {
 }
 
 function MoviePage(movies: MovieProps): JSX.Element {
-  const [, setActiveCard] = React.useState(movies.activeMovie);
-
-  function handleActiveMovie(movie: FilmProps): void {
-    setActiveCard(movie);
-    movies.newActiveMovie(movie);
-  }
-
-  const {id, name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring , runTime} = movies.activeMovie;
+  const {id}: ParamsProps = useParams();
+  const film = movies.movies.filter((item) => item.id.toString() === id)[0];
+  const {name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring , runTime} = film;
   return (
     <>
       <section className="film-card film-card--full">
@@ -107,13 +104,13 @@ function MoviePage(movies: MovieProps): JSX.Element {
               <div className="film-card__tabs">
                 <nav className="film-nav film-card__nav">
                   <ul className="film-nav__list">
-                    <li className="film-nav__item film-nav__item--active film-nav__item--overview" onClick={(event) => {handleClick(event);}}>
+                    <li className="film-nav__item film-nav__item--active film-nav__item--overview" onClick={(event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {handleClickNavElement(event);}}>
                       <p className="film-nav__link">Overview</p>
                     </li>
-                    <li className="film-nav__item film-nav__item--details" onClick={(event) => {handleClick(event);}}>
+                    <li className="film-nav__item film-nav__item--details" onClick={(event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {handleClickNavElement(event);}}>
                       <p className="film-nav__link">Details</p>
                     </li>
-                    <li className="film-nav__item film-nav__item--reviews" onClick={(event) => {handleClick(event);}}>
+                    <li className="film-nav__item film-nav__item--reviews" onClick={(event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {handleClickNavElement(event);}}>
                       <p className="film-nav__link">Reviews</p>
                     </li>
                   </ul>
@@ -191,7 +188,6 @@ function MoviePage(movies: MovieProps): JSX.Element {
 
           <FilmsList
             movies = {movies.movies}
-            newActiveCard = {handleActiveMovie}
             countFilms={COUNT_RENDER_FILMS_LIST}
             isFavorite={false}
           />

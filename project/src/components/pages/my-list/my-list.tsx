@@ -6,20 +6,10 @@ import {FilmProps} from '../../../types/movie';
 import FilmsList from '../../elements-page/films-list/films-list';
 
 type MyFilmProps = {
-  activeMovie: FilmProps;
   movies: FilmProps[];
-  newActiveMovie: (movie: FilmProps) => void;
 }
 
-function MyFilm(movies: MyFilmProps): JSX.Element {
-  const [, setActiveCard] = React.useState(movies.activeMovie);
-
-  function handleActiveMovie(movie: FilmProps): void {
-    setActiveCard(movie);
-    movies.newActiveMovie(movie);
-  }
-
-  return (
+function MyFilm(movies: MyFilmProps): JSX.Element {  return (
     <div className="user-page">
       <header className="page-header user-page__head">
 
@@ -34,7 +24,7 @@ function MyFilm(movies: MyFilmProps): JSX.Element {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <FilmsList movies={movies.movies} newActiveCard={handleActiveMovie} countFilms={movies.movies.length} isFavorite/>
+        <FilmsList movies={movies.movies} countFilms={movies.movies.length} isFavorite/>
       </section>
 
       <Footer />

@@ -4,17 +4,15 @@ import {FilmProps} from '../../../types/movie';
 
 type FilmsListProps = {
   movies: FilmProps[];
-  newActiveCard: (movie: FilmProps) => void;
   countFilms: number;
   isFavorite: boolean;
 }
 
 function FilmsList(movies: FilmsListProps): JSX.Element {
-  const [, setActiveCard] = React.useState(movies.movies[0]);
+  const [, setActiveCard] = React.useState<number>(0);
 
-  function handleActiveMovie(movie: FilmProps): void {
-    setActiveCard(movie);
-    movies.newActiveCard(movie);
+  function handleActiveMovie(id: number): void {
+    setActiveCard(id);
   }
 
   if(movies.isFavorite){

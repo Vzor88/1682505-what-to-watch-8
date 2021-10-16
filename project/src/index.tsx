@@ -6,16 +6,16 @@ import {FilmProps} from './types/movie';
 import {GenreProps} from './types/genres';
 
 function determinationGenresList(films:FilmProps[]): GenreProps[] {
-  const genreList = [];
-  const list: (string | string[])[] = [];
-  genreList.push({name: 'All genres', isActive: true});
+  const genresList = [];
+  const enumerationGenres: (string | string[])[] = [];
+  genresList.push({name: 'All genres', isActive: true});
   films.map((film:FilmProps) => {
-    if(!list.includes(film.genre)){
-      genreList.push({name: film.genre, isActive: false});
-      list.push(film.genre);
+    if(!enumerationGenres.includes(film.genre)){
+      genresList.push({name: film.genre, isActive: false});
+      enumerationGenres.push(film.genre);
     }
   });
-  return genreList;
+  return genresList;
 }
 
 ReactDOM.render(

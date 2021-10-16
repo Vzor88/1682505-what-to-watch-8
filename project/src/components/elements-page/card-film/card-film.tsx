@@ -5,14 +5,14 @@ import {FilmProps} from '../../../types/movie';
 
 type CardFilmProps = {
   film: FilmProps;
-  updateCardFilm: (movie: FilmProps) => void;
+  updateCardFilm: (movie: number) => void;
 }
 
 function CardFilm(props: CardFilmProps): JSX.Element {
   const {previewImage, name, id} = props.film;
   return (
     <article className="small-film-card catalog__films-card" onMouseEnter={()=> {
-      props.updateCardFilm(props.film);
+      props.updateCardFilm(id);
     }}
     >
       <div className="small-film-card__image">

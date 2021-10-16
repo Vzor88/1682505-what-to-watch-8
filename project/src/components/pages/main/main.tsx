@@ -11,20 +11,12 @@ import Promo from '../../elements-page/promo/promo';
 type MainProps = {
   promoMovie: FilmProps,
   movies: FilmProps[],
-  newActiveMovie: (movie: FilmProps) => void,
   genres: GenreProps[],
 }
 
 const COUNT_RENDER_FILMS_LIST = 8;
 
 function Main(movies: MainProps): JSX.Element {
-  const [, setActiveCard] = React.useState(movies.movies[0]);
-
-  function handleActiveMovie(movie: FilmProps): void {
-    setActiveCard(movie);
-    movies.newActiveMovie(movie);
-  }
-
   return (
     <>
       <section className="film-card">
@@ -54,7 +46,6 @@ function Main(movies: MainProps): JSX.Element {
 
           <FilmsList
             movies={movies.movies}
-            newActiveCard={handleActiveMovie}
             countFilms = {COUNT_RENDER_FILMS_LIST}
             isFavorite= {false}
           />

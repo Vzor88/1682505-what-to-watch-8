@@ -19,19 +19,17 @@ type AppProps = {
 }
 
 function App(movies: AppProps): JSX.Element {
-  const [activeMovie, setActiveCard] = React.useState(movies.movies[0]);
-
   return (
     <BrowserRouter>
       <Switch>
         <Route
           exact path={AppRoute.Main}
-          render={() => <Main promoMovie = {movies.movies[0]} movies = {movies.movies} newActiveMovie = {setActiveCard} genres = {movies.genres}/>}
+          render={() => <Main promoMovie = {movies.movies[0]} movies = {movies.movies} genres = {movies.genres}/>}
         >
         </Route>
         <PrivateRoute
           exact path={AppRoute.MyList}
-          render={() => <MyFilm activeMovie = {activeMovie} movies = {movies.movies} newActiveMovie = {setActiveCard}/>}
+          render={() => <MyFilm movies = {movies.movies}/>}
           authorizationStatus={AuthorizationStatus.Auth}
         >
         </PrivateRoute>
@@ -42,7 +40,7 @@ function App(movies: AppProps): JSX.Element {
         </Route>
         <Route
           exact path={AppRoute.Film}
-          render={() => <MoviePage activeMovie = {activeMovie} movies = {movies.movies} newActiveMovie = {setActiveCard}/>}
+          render={() => <MoviePage movies = {movies.movies} />}
         >
         </Route>
         <Route
@@ -52,7 +50,7 @@ function App(movies: AppProps): JSX.Element {
         </Route>
         <PrivateRoute
           exact path={AppRoute.AddReview}
-          render={() => <AddReview movie = {activeMovie}/>}
+          render={() => <AddReview movies = {movies.movies}/>}
           authorizationStatus={AuthorizationStatus.Auth}
         >
         </PrivateRoute>

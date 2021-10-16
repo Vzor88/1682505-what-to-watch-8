@@ -3,15 +3,21 @@ import Logo from '../../elements-page/logo/logo';
 import {FilmProps} from '../../../types/movie';
 import UserInfo from '../../elements-page/user-info/user-info';
 import React, {ChangeEvent} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import Star from '../../elements-page/star/star';
 
-const starsValue = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+const generateCountStars = new Array(10).fill(10).map((value:number, index:number) => value - index);
 
-function AddReview(movie: { movie: FilmProps }): JSX.Element {
-  const [, setValueStar] = React.useState(' ');
-  const [, setValueText] = React.useState(' ');
-  const {name, posterImage, backgroundImage, id} = movie.movie;
+type ParamsProps = {
+  id: string;
+}
+
+function AddReview(movies: { movies: FilmProps[] }): JSX.Element {
+  const [, setValueStar] = React.useState<string>(' ');
+  const [, setValueText] = React.useState<string>(' ');
+  const {id}: ParamsProps = useParams<ParamsProps>();
+  const film = movies.movies.filter((item) => item.id.toString() === id)[0];
+  const {name, posterImage, backgroundImage} = film;
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
@@ -49,7 +55,7 @@ function AddReview(movie: { movie: FilmProps }): JSX.Element {
         <form action="#" className="add-review__form">
           <div className="rating">
             <div className="rating__stars">
-              {starsValue.map((star) => <Star star={star} key={star} updateValueStar={setValueStar} />)}
+              {generateCountStars.map((star:number) => <Star star={star} key={star} updateValueStar={setValueStar} />)}
 
             </div>
           </div>
