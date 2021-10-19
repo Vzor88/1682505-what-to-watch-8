@@ -30,27 +30,31 @@ const generateDuration = (minutes: number): string => {
   return !hours  ? `${minutes}m` : `${hours}h ${minutes}m`;
 };
 
-function handleClickNavElement(event: any):void {
-  const filmCardsContent = document.querySelectorAll('.film-card__content');
-  const filmNavItem = document.querySelectorAll('.film-nav__item');
-  filmCardsContent.forEach((element) => {
-    element.classList.remove('film-card__content--active');
-    if(element.classList.contains(event.target.textContent.toLowerCase())){
-      element.classList.add('film-card__content--active');
-    }
-  });
-  filmNavItem.forEach((element) => {
-    element.classList.remove('film-nav__item--active');
-    if(element === event.target.parentElement){
-      element.classList.add('film-nav__item--active');
-    }
-  });
-}
 
 function MoviePage(movies: MovieProps): JSX.Element {
   const {id}: ParamsProps = useParams();
   const film = movies.movies.filter((item) => item.id.toString() === id)[0];
   const {name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring , runTime} = film;
+
+  function handleClickNavElement(event: React.MouseEvent<HTMLLIElement>):void {
+    const filmCardsContent = document.querySelectorAll('.film-card__content');
+    const filmNavItem = document.querySelectorAll('.film-nav__item');
+    filmCardsContent.forEach((element) => {
+      element.classList.remove('film-card__content--active');
+      if(event.currentTarget.textContent){
+        if(element.classList.contains(event.currentTarget.textContent.toLowerCase())){
+          element.classList.add('film-card__content--active');
+        }
+      }
+    });
+    filmNavItem.forEach((element) => {
+      element.classList.remove('film-nav__item--active');
+      if(element === event.currentTarget.parentElement){
+        element.classList.add('film-nav__item--active');
+      }
+    });
+  }
+
   return (
     <>
       <section className="film-card film-card--full">
@@ -104,18 +108,17 @@ function MoviePage(movies: MovieProps): JSX.Element {
               <div className="film-card__tabs">
                 <nav className="film-nav film-card__nav">
                   <ul className="film-nav__list">
-                    <li className="film-nav__item film-nav__item--active film-nav__item--overview" onClick={(event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {handleClickNavElement(event);}}>
+                    <li className="film-nav__item film-nav__item--active film-nav__item--overview" onClick={handleClickNavElement}>
                       <p className="film-nav__link">Overview</p>
                     </li>
-                    <li className="film-nav__item film-nav__item--details" onClick={(event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {handleClickNavElement(event);}}>
+                    <li className="film-nav__item film-nav__item--details" onClick={handleClickNavElement}>
                       <p className="film-nav__link">Details</p>
                     </li>
-                    <li className="film-nav__item film-nav__item--reviews" onClick={(event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {handleClickNavElement(event);}}>
+                    <li className="film-nav__item film-nav__item--reviews" onClick={handleClickNavElement}>
                       <p className="film-nav__link">Reviews</p>
                     </li>
                   </ul>
                 </nav>
-
                 <div className="film-card__content overview film-card__content--active film-card__content--overview">
                   <div className="film-rating">
                     <div className="film-rating__score">{rating}</div>

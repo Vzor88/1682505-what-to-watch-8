@@ -14,6 +14,7 @@ function determinationGenresList(films:FilmProps[]): GenreProps[] {
       genresList.push({name: film.genre, isActive: false});
       enumerationGenres.push(film.genre);
     }
+    return enumerationGenres;
   });
   return genresList;
 }
