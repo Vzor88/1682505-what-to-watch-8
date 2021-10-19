@@ -1,24 +1,13 @@
 import {SIZES} from '../../../consts';
-import {COUNT_SHORT_LIST_STARRING} from './consts';
-import Footer from '../../elements-page/footer/footer';
-import Logo from '../../elements-page/logo/logo';
-import {Link, useParams} from 'react-router-dom';
-import {FilmProps} from '../../../types/movie';
-import UserInfo from '../../elements-page/user-info/user-info';
-import React from 'react';
+import {COUNT_RENDER_FILMS_LIST, COUNT_SHORT_LIST_STARRING} from './consts';
 import {DATA_COMMENTS} from '../../../mock/comments';
+import {MovieProps} from '../../../types/movie';
+import {MoviePageProps, ParamsProps} from './type';
+import Footer from '../../elements-page/footer/footer';
+import {Link, useParams} from 'react-router-dom';
 import Comment from '../../elements-page/comment/comment';
 import FilmsList from '../../elements-page/films-list/films-list';
-
-type MovieProps = {
-  movies: FilmProps[];
-}
-
-type ParamsProps = {
-  id: string;
-}
-
-const COUNT_RENDER_FILMS_LIST = 4;
+import Header from '../../elements-page/header/header';
 
 const generateDuration = (minutes: number): string => {
   let hours = 0;
@@ -30,11 +19,10 @@ const generateDuration = (minutes: number): string => {
   return !hours  ? `${minutes}m` : `${hours}h ${minutes}m`;
 };
 
-
-function MoviePage(movies: MovieProps): JSX.Element {
+function Movie(movies: MoviePageProps): JSX.Element {
   const {id}: ParamsProps = useParams();
-  const film = movies.movies.filter((item) => item.id.toString() === id)[0];
-  const {name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring , runTime} = film;
+  const movie = movies.movies.filter((item:MovieProps) => item.id.toString() === id)[0];
+  const {name, posterImage, backgroundImage, genre, released, rating, scoresCount, description, director, starring , runTime} = movie;
 
   function handleClickNavElement(event: React.MouseEvent<HTMLLIElement>):void {
     const filmCardsContent = document.querySelectorAll('.film-card__content');
@@ -65,12 +53,7 @@ function MoviePage(movies: MovieProps): JSX.Element {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header film-card__head">
-
-            <Logo />
-            <UserInfo />
-
-          </header>
+          <Header isLight={false} isBreadcrumbs={false} isMiddleScreen={false}/>
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
@@ -204,4 +187,4 @@ function MoviePage(movies: MovieProps): JSX.Element {
   );
 }
 
-export default MoviePage;
+export default Movie;

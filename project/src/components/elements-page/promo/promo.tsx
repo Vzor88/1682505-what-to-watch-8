@@ -1,23 +1,23 @@
-import React from 'react';
 import {SIZES} from '../../../consts';
-import {FilmProps} from '../../../types/movie';
+import {MovieProps} from '../../../types/movie';
 
 type PromoProps = {
-  movie: FilmProps
+  movie: MovieProps;
 }
 
 function Promo(movie: PromoProps): JSX.Element {
+  const {posterImage, name, genre, released} = movie.movie;
   return (
     <div className="film-card__wrap">
       <div className="film-card__info">
         <div className="film-card__poster">
-          <img src={movie.movie.posterImage} alt={`${movie.movie.name} poster`} width={SIZES.POSTER.WIDTH} height={SIZES.POSTER.HEIGHT}/>
+          <img src={posterImage} alt={`${name} poster`} width={SIZES.POSTER.WIDTH} height={SIZES.POSTER.HEIGHT}/>
         </div>
         <div className="film-card__desc">
-          <h2 className="film-card__title">{movie.movie.name}</h2>
+          <h2 className="film-card__title">{name}</h2>
           <p className="film-card__meta">
-            <span className="film-card__genre">{movie.movie.genre}</span>
-            <span className="film-card__year">{movie.movie.released}</span>
+            <span className="film-card__genre">{genre}</span>
+            <span className="film-card__year">{released}</span>
           </p>
           <div className="film-card__buttons">
             <button className="btn btn--play film-card__button" type="button">

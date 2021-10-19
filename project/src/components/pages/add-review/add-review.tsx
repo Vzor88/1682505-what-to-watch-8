@@ -1,10 +1,9 @@
 import {SIZES} from '../../../consts';
-import Logo from '../../elements-page/logo/logo';
-import {FilmProps} from '../../../types/movie';
-import UserInfo from '../../elements-page/user-info/user-info';
+import {MovieProps} from '../../../types/movie';
 import React, {ChangeEvent} from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import Star from '../../elements-page/star/star';
+import Header from '../../elements-page/header/header';
 
 const generateCountStars = new Array(10).fill(10).map((value:number, index:number) => value - index);
 
@@ -12,7 +11,7 @@ type ParamsProps = {
   id: string;
 }
 
-function AddReview(movies: { movies: FilmProps[] }): JSX.Element {
+function AddReview(movies: { movies: MovieProps[] }): JSX.Element {
   const [, setValueStar] = React.useState<string>(' ');
   const [, setValueText] = React.useState<string>(' ');
   const {id}: ParamsProps = useParams<ParamsProps>();
@@ -27,24 +26,7 @@ function AddReview(movies: { movies: FilmProps[] }): JSX.Element {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header">
-
-          <Logo />
-
-          <nav className="breadcrumbs">
-            <ul className="breadcrumbs__list">
-              <li className="breadcrumbs__item">
-                <Link to={`/films/${id}`} className="breadcrumbs__link">{name}</Link>
-              </li>
-              <li className="breadcrumbs__item">
-                <Link to={`/films/${id}/review`} className="breadcrumbs__link">Add review</Link>
-              </li>
-            </ul>
-          </nav>
-
-          <UserInfo />
-
-        </header>
+        <Header isLight={false} isBreadcrumbs isMiddleScreen={false} name={name} id={id}/>
 
         <div className="film-card__poster film-card__poster--small">
           <img src={posterImage} alt={`${name} poster`} width={SIZES.POSTER.WIDTH} height={SIZES.POSTER.HEIGHT}/>

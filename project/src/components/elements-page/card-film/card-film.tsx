@@ -1,11 +1,11 @@
 import {SIZES} from './consts';
 import {Link} from 'react-router-dom';
-import React, {useState} from 'react';
-import {FilmProps} from '../../../types/movie';
+import {useState} from 'react';
+import {MovieProps} from '../../../types/movie';
 import VideoPlayer from '../video-player/video-player';
 
 type CardFilmProps = {
-  film: FilmProps;
+  film: MovieProps;
   updateCardFilm: (movie: number) => void;
 }
 

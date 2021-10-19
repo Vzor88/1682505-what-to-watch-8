@@ -1,4 +1,6 @@
-export const DATA_COMMENTS = [
+import {CommentProps} from '../types/comment';
+
+export const DATA_COMMENTS: CommentProps[] = [
   {
     id: 1,
     user: {
