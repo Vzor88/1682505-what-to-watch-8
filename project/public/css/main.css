@@ -852,7 +852,8 @@ main {
   color: #EEE5B5;
   text-decoration: none;
   position: relative;
-  padding-bottom: 19px; }
+  padding-bottom: 19px;
+  margin: 0;}
   .film-nav__link::after {
     content: '';
     position: absolute;
@@ -1409,3 +1410,9 @@ main {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%); }
+
+.film-card__content {
+  display:none;}
+
+.film-card__content--active {
+  display:block;}

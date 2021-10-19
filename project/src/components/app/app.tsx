@@ -5,76 +5,58 @@ import MyFilm from '../pages/my-list/my-list';
 import Player from '../pages/player/player';
 import SignIn from '../pages/sign-in/sign-in';
 import AddReview from '../pages/add-review/add-review';
-import Movie from '../pages/movie/movie';
-import MovieDetails from '../pages/movie/movie-details';
-import MovieReviews from '../pages/movie/movie-reviews';
 import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import React from 'react';
-import {FilmProps, FilmsProps} from '../../types/movie';
+import {FilmProps} from '../../types/movie';
+import MoviePage from '../pages/movie/movie-page';
 import {GenreProps} from '../../types/genres';
 
 type AppProps = {
-  movies: FilmsProps,
+  movies: FilmProps[],
   promoMovie:FilmProps,
-  genres: GenreProps[]
+  genres: GenreProps[],
 }
 
 function App(movies: AppProps): JSX.Element {
-  const [activeMovie, setActiveCard] = React.useState(movies.movies[0]);
-
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path={AppRoute.Main}>
-          <Main
-            promoMovie = {movies.movies[0]}
-            movies = {movies.movies}
-            newActiveMovie = {setActiveCard}
-            genres = {movies.genres}
-          />
+        <Route
+          exact path={AppRoute.Main}
+          render={() => <Main promoMovie = {movies.movies[0]} movies = {movies.movies} genres = {movies.genres}/>}
+        >
         </Route>
         <PrivateRoute
           exact path={AppRoute.MyList}
-          render={() => <MyFilm activeMovie = {activeMovie} movies = {movies.movies} newActiveMovie = {setActiveCard}/>}
+          render={() => <MyFilm movies = {movies.movies}/>}
           authorizationStatus={AuthorizationStatus.Auth}
         >
         </PrivateRoute>
-        <Route exact path={AppRoute.Player}>
-          <Player />
+        <Route
+          exact path={AppRoute.Player}
+          render={() => <Player />}
+        >
         </Route>
-        <Route exact path={AppRoute.Film}>
-          <Movie
-            activeMovie = {activeMovie}
-            movies = {movies.movies}
-            newActiveMovie = {setActiveCard}
-          />
+        <Route
+          exact path={AppRoute.Film}
+          render={() => <MoviePage movies = {movies.movies} />}
+        >
         </Route>
-        <Route exact path={AppRoute.FilmDetails}>
-          <MovieDetails
-            activeMovie = {activeMovie}
-            movies = {movies.movies}
-            newActiveMovie = {setActiveCard}
-          />
-        </Route>
-        <Route exact path={AppRoute.FilmReviews}>
-          <MovieReviews
-            activeMovie = {activeMovie}
-            movies = {movies.movies}
-            newActiveMovie = {setActiveCard}
-          />
-        </Route>
-        <Route exact path={AppRoute.SignIn}>
-          <SignIn />
+        <Route
+          exact path={AppRoute.SignIn}
+          render={() => <SignIn />}
+        >
         </Route>
         <PrivateRoute
           exact path={AppRoute.AddReview}
-          render={() => <AddReview movie = {activeMovie}/>}
+          render={() => <AddReview movies = {movies.movies}/>}
           authorizationStatus={AuthorizationStatus.Auth}
         >
         </PrivateRoute>
-        <Route>
-          <NotFoundScreen />
+        <Route
+          render={() => <NotFoundScreen />}
+        >
         </Route>
       </Switch>
     </BrowserRouter>

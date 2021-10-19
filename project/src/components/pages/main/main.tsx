@@ -1,6 +1,6 @@
 import Footer from '../../elements-page/footer/footer';
 import Logo from '../../elements-page/logo/logo';
-import {FilmProps, FilmsProps} from '../../../types/movie';
+import {FilmProps} from '../../../types/movie';
 import React from 'react';
 import GenresList from '../../elements-page/genres-list/genres-list';
 import UserInfo from '../../elements-page/user-info/user-info';
@@ -10,19 +10,13 @@ import Promo from '../../elements-page/promo/promo';
 
 type MainProps = {
   promoMovie: FilmProps,
-  movies: FilmsProps,
-  newActiveMovie: (movie: FilmProps) => void,
-  genres: GenreProps[]
+  movies: FilmProps[],
+  genres: GenreProps[],
 }
 
+const COUNT_RENDER_FILMS_LIST = 8;
+
 function Main(movies: MainProps): JSX.Element {
-  const [, setActiveCard] = React.useState(movies.movies[0]);
-
-  function handleActiveMovie(movie: FilmProps): void {
-    setActiveCard(movie);
-    movies.newActiveMovie(movie);
-  }
-
   return (
     <>
       <section className="film-card">
@@ -52,7 +46,8 @@ function Main(movies: MainProps): JSX.Element {
 
           <FilmsList
             movies={movies.movies}
-            newActiveCard={handleActiveMovie}
+            countFilms = {COUNT_RENDER_FILMS_LIST}
+            isFavorite= {false}
           />
 
           <div className="catalog__more">
