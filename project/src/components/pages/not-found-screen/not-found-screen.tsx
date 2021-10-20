@@ -6,12 +6,12 @@ function NotFoundScreen(): JSX.Element {
   return (
     <div className="user-page">
 
-      <Header isLight={false} isBreadcrumbs={false} isMiddleScreen text={' '}/>
+      <Header isLight={false} isBreadcrumbs={false} isMiddleScreen text={'Unknown page'}/>
 
       <div className="sign-in user-page__content">
         <section className="page__screen">
-          <h1 style={{fontSize:'2.5em'}}>404. Page not found</h1>
-          <Link to="/" style={{textDecoration:'none', color:'#c9b37e', fontSize:'30px', fontWeight:'bold'}}>Вернуться на главную</Link>
+          <h1 className="sign-in__title">404. Page not found</h1>
+          <Link className="sign-in__link" to="/" >Go back to the main page</Link>
         </section>
       </div>
 

@@ -1,6 +1,6 @@
 import Logo from '../logo/logo';
 import UserInfo from '../user-info/user-info';
-import {Link} from 'react-router-dom';
+import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 
 type HeaderProps = {
   isLight: boolean;
@@ -17,27 +17,10 @@ function Header(props:HeaderProps): JSX.Element {
     <header className={`page-header ${isBreadcrumbs ? ' ' : 'film-card__head'} ${isMiddleScreen ? 'user-page__head' : ' '}`}>
 
       <Logo isLight={isLight}/>
-      {
-        isBreadcrumbs
-          ?
-          <nav className="breadcrumbs">
-            <ul className="breadcrumbs__list">
-              <li className="breadcrumbs__item">
-                <Link to={`/films/${id}`} className="breadcrumbs__link">{name}</Link>
-              </li>
-              <li className="breadcrumbs__item">
-                <Link to={`/films/${id}/review`} className="breadcrumbs__link">Add review</Link>
-              </li>
-            </ul>
-          </nav>
-          : ' '
-      }
-      {
-        isMiddleScreen
-          ?
-          <h1 className="page-title user-page__title">{text}</h1>
-          : ' '
-      }
+
+      {isBreadcrumbs ? <Breadcrumbs id={id} name={name}/> : ' '}
+      {isMiddleScreen ? <h1 className="page-title user-page__title">{text}</h1> : ' '}
+
       <UserInfo />
 
     </header>

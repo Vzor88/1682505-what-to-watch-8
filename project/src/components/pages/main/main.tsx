@@ -21,7 +21,11 @@ function Main(movies: MainProps): JSX.Element {
         </div>
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header isLight={false} isBreadcrumbs={false} isMiddleScreen={false}/>
+        <Header
+          isLight={false}
+          isBreadcrumbs={false}
+          isMiddleScreen={false}
+        />
 
         <Promo movie = {movies.promoMovie}/>
       </section>
