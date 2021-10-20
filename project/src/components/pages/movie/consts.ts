@@ -1,1 +1,2 @@
 export const COUNT_SHORT_LIST_STARRING = 4;
+export const COUNT_RENDER_FILMS_LIST = 4;

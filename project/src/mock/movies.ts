@@ -1,6 +1,6 @@
-import {FilmProps} from '../types/movie';
+import {MovieProps} from '../types/movie';
 
-export const DATA_FILMS: FilmProps[] = [
+export const DATA_MOVIES: MovieProps[] = [
   {
     id: 1,
     previewImage: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',

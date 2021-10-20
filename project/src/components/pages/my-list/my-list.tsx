@@ -1,26 +1,17 @@
 import Footer from '../../elements-page/footer/footer';
-import Logo from '../../elements-page/logo/logo';
-import React from 'react';
-import UserInfo from '../../elements-page/user-info/user-info';
-import {FilmProps} from '../../../types/movie';
+import {MovieProps} from '../../../types/movie';
 import FilmsList from '../../elements-page/films-list/films-list';
+import Header from '../../elements-page/header/header';
 
 type MyFilmProps = {
-  movies: FilmProps[];
+  movies: MovieProps[];
 }
 
 function MyFilm(movies: MyFilmProps): JSX.Element {
   return (
     <div className="user-page">
-      <header className="page-header user-page__head">
 
-        <Logo />
-
-        <h1 className="page-title user-page__title">My list</h1>
-
-        <UserInfo />
-
-      </header>
+      <Header isLight={false} isBreadcrumbs={false} isMiddleScreen text={'My list'}/>
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>

@@ -1,9 +1,9 @@
 import React, {useEffect, useRef} from 'react';
-import {FilmProps} from '../../../types/movie';
+import {MovieProps} from '../../../types/movie';
 import {SIZES} from '../card-film/consts';
 
 type VideoPlayerProps = {
-  film: FilmProps;
+  film: MovieProps;
   isPlay: boolean;
 }
 

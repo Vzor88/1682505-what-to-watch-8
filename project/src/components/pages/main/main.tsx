@@ -1,17 +1,13 @@
 import Footer from '../../elements-page/footer/footer';
-import Logo from '../../elements-page/logo/logo';
-import {FilmProps} from '../../../types/movie';
-import React from 'react';
+import {MovieProps} from '../../../types/movie';
 import GenresList from '../../elements-page/genres-list/genres-list';
-import UserInfo from '../../elements-page/user-info/user-info';
 import FilmsList from '../../elements-page/films-list/films-list';
-import {GenreProps} from '../../../types/genres';
 import Promo from '../../elements-page/promo/promo';
+import Header from '../../elements-page/header/header';
 
 type MainProps = {
-  promoMovie: FilmProps,
-  movies: FilmProps[],
-  genres: GenreProps[],
+  promoMovie: MovieProps,
+  movies: MovieProps[],
 }
 
 const COUNT_RENDER_FILMS_LIST = 8;
@@ -24,12 +20,12 @@ function Main(movies: MainProps): JSX.Element {
           <img src={movies.promoMovie.backgroundImage} alt={movies.promoMovie.name}/>
         </div>
         <h1 className="visually-hidden">WTW</h1>
-        <header className="page-header film-card__head">
 
-          <Logo />
-          <UserInfo />
-
-        </header>
+        <Header
+          isLight={false}
+          isBreadcrumbs={false}
+          isMiddleScreen={false}
+        />
 
         <Promo movie = {movies.promoMovie}/>
       </section>
@@ -41,7 +37,7 @@ function Main(movies: MainProps): JSX.Element {
           </h2>
 
           <GenresList
-            genres = {movies.genres}
+            films={movies.movies}
           />
 
           <FilmsList

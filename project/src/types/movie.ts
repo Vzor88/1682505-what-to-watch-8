@@ -1,4 +1,4 @@
-export type FilmProps = {
+export type MovieProps = {
   id: number,
   name: string,
   posterImage: string,

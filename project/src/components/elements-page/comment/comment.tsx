@@ -1,17 +1,8 @@
 import dayjs from 'dayjs';
 import {FLOATING_POINT} from './consts';
+import {CommentProps} from '../../../types/comment';
 
-type CommentProps = {
-  user: {
-    id: number;
-    name: string;
-  }
-  rating: number;
-  comment: string;
-  date: string;
-}
-
-function Comment(props: CommentProps): JSX.Element {
+function Comment(props: Omit<CommentProps, 'id'>): JSX.Element {
   const {comment, user, rating, date} = props;
   return (
     <div className="review">

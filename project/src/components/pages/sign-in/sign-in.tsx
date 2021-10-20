@@ -1,16 +1,11 @@
 import Footer from '../../elements-page/footer/footer';
-import Logo from '../../elements-page/logo/logo';
-import React from 'react';
+import Header from '../../elements-page/header/header';
 
 function SignIn(): JSX.Element {
   return (
     <div className="user-page">
-      <header className="page-header user-page__head">
 
-        <Logo />
-
-        <h1 className="page-title user-page__title">Sign in</h1>
-      </header>
+      <Header isLight={false} isBreadcrumbs={false} isMiddleScreen text={'Sign in'}/>
 
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form">
