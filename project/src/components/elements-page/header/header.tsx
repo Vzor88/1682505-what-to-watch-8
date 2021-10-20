@@ -6,9 +6,9 @@ type HeaderProps = {
   isLight: boolean;
   isBreadcrumbs: boolean;
   isMiddleScreen: boolean;
-  id?: string;
-  name?: string;
-  text?: string;
+  id: string;
+  name: string;
+  text: string;
 }
 
 function Header(props:HeaderProps): JSX.Element {

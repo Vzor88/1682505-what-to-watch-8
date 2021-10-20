@@ -11,7 +11,14 @@ function MyFilm(movies: MyFilmProps): JSX.Element {
   return (
     <div className="user-page">
 
-      <Header isLight={false} isBreadcrumbs={false} isMiddleScreen text={'My list'}/>
+      <Header
+        isLight={false}
+        isBreadcrumbs={false}
+        isMiddleScreen
+        text={'My list'}
+        id={' '}
+        name={' '}
+      />
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>

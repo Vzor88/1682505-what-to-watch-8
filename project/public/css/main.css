@@ -1411,12 +1411,6 @@ main {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%); }
 
-.film-card__content {
-  display:none;}
-
-.film-card__content--active {
-  display:block;}
-
 .page__screen {
   text-align: center;}
 

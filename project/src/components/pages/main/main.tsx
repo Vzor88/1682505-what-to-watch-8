@@ -25,6 +25,9 @@ function Main(movies: MainProps): JSX.Element {
           isLight={false}
           isBreadcrumbs={false}
           isMiddleScreen={false}
+          id={' '}
+          name={' '}
+          text={' '}
         />
 
         <Promo movie = {movies.promoMovie}/>

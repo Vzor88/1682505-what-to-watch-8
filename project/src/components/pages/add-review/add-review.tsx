@@ -26,7 +26,7 @@ function AddReview(movies: { movies: MovieProps[] }): JSX.Element {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header isLight={false} isBreadcrumbs isMiddleScreen={false} name={name} id={id}/>
+        <Header isLight={false} isBreadcrumbs isMiddleScreen={false} name={name} id={id} text={' '}/>
 
         <div className="film-card__poster film-card__poster--small">
           <img src={posterImage} alt={`${name} poster`} width={SIZES.POSTER.WIDTH} height={SIZES.POSTER.HEIGHT}/>
