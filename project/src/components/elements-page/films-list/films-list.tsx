@@ -10,8 +10,8 @@ type FilmsListProps = {
   isFavorite: boolean;
 }
 
-const mapStateToProps = ({filteredFilms}: State) => ({
-  filteredFilms,
+const mapStateToProps = ({filteredMovies}: State) => ({
+  filteredMovies,
 });
 
 const connector = connect(mapStateToProps);
@@ -28,17 +28,17 @@ function FilmsList(movies: ConnectedComponentProps): JSX.Element {
   if(movies.isFavorite){
     return (
       <div className="catalog__films-list">
-        {movies.movies.map((film:MovieProps) => film.isFavorite ? <CardFilm key={film.id} film={film} updateCardFilm={handleActiveMovie} /> : ' ')}
+        {movies.movies.map((movie:MovieProps) => movie.isFavorite ? <CardFilm key={movie.id} movie={movie} updateCardFilm={handleActiveMovie} /> : ' ')}
       </div>
     );
   } else {
     return (
       <div className="catalog__films-list">
-        {movies.filteredFilms.slice(0, movies.countFilms).map((film)=> <CardFilm key={film.id} film={film} updateCardFilm={handleActiveMovie} />)}
+        {movies.filteredMovies.slice(0, movies.countFilms).map((movie)=> <CardFilm key={movie.id} movie={movie} updateCardFilm={handleActiveMovie} />)}
       </div>
     );
   }
 }
 
-
+export {FilmsList};
 export default connector(FilmsList);

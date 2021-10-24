@@ -5,13 +5,15 @@ import {MovieProps} from '../types/movie';
 
 const initialState = {
   genre: 'All genres',
-  filteredFilms: DATA_MOVIES,
+  filteredMovies: DATA_MOVIES,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case ActionType.ChangeGenre:
-      return {...state, genre: action.payload, filteredFilms: DATA_MOVIES.filter((film:MovieProps) => film.genre === action.payload)};
+      return {...state, genre: action.payload, filteredMovies: DATA_MOVIES.filter((film:MovieProps) => film.genre === action.payload)};
+    case ActionType.ResetGenre:
+      return {...initialState};
     default:
       return state;
   }
