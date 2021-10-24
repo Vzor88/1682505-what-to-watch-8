@@ -1,12 +1,20 @@
 import {GenreProps} from '../../../types/genre';
 
-function GenreItem(props: GenreProps): JSX.Element {
-  const {name, isActive} = props;
-  const url = ' ';
+type GenreItemProps = {
+  genre: GenreProps,
+  changeGenre: (nameGenre: string) => void;
+}
+
+function GenreItem(props: GenreItemProps): JSX.Element {
+  const {name, isActive} = props.genre;
+
+  function handleClickGenreItem():void {
+    props.changeGenre(name);
+  }
 
   return (
-    <li className={`catalog__genres-item ${isActive ? 'catalog__genres-item--active' : ' '}`}>
-      <a href={url} className="catalog__genres-link">{name}</a>
+    <li className={`catalog__genres-item ${isActive ? 'catalog__genres-item--active' : ' '}`} onClick={handleClickGenreItem}>
+      <p className="catalog__genres-text" >{name}</p>
     </li>
   );
 }

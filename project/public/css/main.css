@@ -518,22 +518,23 @@ main {
 .catalog__genres-item {
   margin-right: 20px;
   margin-bottom: 20px; }
-  .catalog__genres-item--active .catalog__genres-link {
+  .catalog__genres-item--active .catalog__genres-text {
     font-weight: bold; }
-    .catalog__genres-item--active .catalog__genres-link::after {
+    .catalog__genres-item--active .catalog__genres-text::after {
       display: block; }
   .catalog__genres-item:last-child {
     margin-right: 0; }
 
-.catalog__genres-link {
+.catalog__genres-text {
   display: block;
   color: #DFCF77;
   text-decoration: none;
   position: relative;
+  margin: 0;
   padding-bottom: 15px;
   -webkit-transition: font-weight;
   transition: font-weight; }
-  .catalog__genres-link::after {
+  .catalog__genres-text::after {
     content: '';
     position: absolute;
     z-index: 1;
@@ -543,7 +544,7 @@ main {
     bottom: 0;
     background: #D9CD8D;
     display: none; }
-  .catalog__genres-link:hover::after {
+  .catalog__genres-text:hover::after {
     display: block; }
 
 .catalog__films-list {
