@@ -1,17 +1,20 @@
-import {SIZES} from '../../../consts';
-import {MovieProps} from '../../../types/movie';
+import {SIZES} from '../../../constants';
 import React, {ChangeEvent} from 'react';
 import {useParams} from 'react-router-dom';
 import Star from '../../elements-page/star/star';
 import Header from '../../elements-page/header/header';
-
-const generateCountStars = new Array(10).fill(10).map((value:number, index:number) => value - index);
+import {generateCountStars} from './constants';
+import {connect, ConnectedProps} from 'react-redux';
+import {mapStateToProps} from '../my-list/constants';
 
 type ParamsProps = {
   id: string;
 }
 
-function AddReview(movies: { movies: MovieProps[] }): JSX.Element {
+const connector = connect(mapStateToProps);
+type ConnectedComponentProps = ConnectedProps<typeof connector>;
+
+function AddReview(movies: ConnectedComponentProps): JSX.Element {
   const [, setValueStar] = React.useState<string>(' ');
   const [, setValueText] = React.useState<string>(' ');
   const {id}: ParamsProps = useParams<ParamsProps>();
@@ -58,5 +61,6 @@ function AddReview(movies: { movies: MovieProps[] }): JSX.Element {
   );
 }
 
-export default AddReview;
+export {AddReview};
+export default connector(AddReview);
 

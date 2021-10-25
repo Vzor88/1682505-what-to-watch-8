@@ -1,38 +1,19 @@
-import {MovieProps} from '../../../types/movie';
 import GenreItem from '../genre-item/genre-item';
 import React from 'react';
-import {State} from '../../../types/state';
-import {Actions} from '../../../types/action';
-import {Dispatch} from 'redux';
-import {changeGenre, resetGenre} from '../../../store/action';
 import {connect, ConnectedProps} from 'react-redux';
-import {determinationGenresList} from './utils.js';
-
-type GenresListProps = {
-  films: MovieProps[];
-}
-
-const mapStateToProps = ({genre}: State) => ({
-  genre,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
-  onChangeGenre(genre:string) {
-    genre === 'All genres' ? dispatch(resetGenre()) : dispatch(changeGenre(genre));
-  },
-});
+import {mapDispatchToProps, mapStateToProps} from './constants';
+import {determinationGenresList} from './selectors';
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux & GenresListProps;
+type ConnectedComponentProps = ConnectedProps<typeof connector>;
 
-function GenresList(films: ConnectedComponentProps): JSX.Element {
+function GenresList(movies: ConnectedComponentProps): JSX.Element {
   const [activeGenre, setActiveGenre] = React.useState<string>('All genres');
-  const genresList = determinationGenresList(films.films, activeGenre);
+  const genresList = determinationGenresList(movies.movies, activeGenre);
 
   function handleActiveGenre(nameGenre: string): void {
     setActiveGenre(nameGenre);
-    films.onChangeGenre(nameGenre);
+    movies.onChangeGenre(nameGenre);
   }
 
   return (

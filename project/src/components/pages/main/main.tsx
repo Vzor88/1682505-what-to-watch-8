@@ -1,23 +1,22 @@
 import Footer from '../../elements-page/footer/footer';
-import {MovieProps} from '../../../types/movie';
 import GenresList from '../../elements-page/genres-list/genres-list';
 import FilmsList from '../../elements-page/films-list/films-list';
 import Promo from '../../elements-page/promo/promo';
 import Header from '../../elements-page/header/header';
+import {COUNT_RENDER_MOVIES_LIST} from './constants';
+import {connect, ConnectedProps} from 'react-redux';
+import {mapStateToProps} from './constants';
 
-type MainProps = {
-  promoMovie: MovieProps,
-  movies: MovieProps[],
-}
+const connector = connect(mapStateToProps);
+type ConnectedComponentProps = ConnectedProps<typeof connector>;
 
-const COUNT_RENDER_FILMS_LIST = 8;
-
-function Main(movies: MainProps): JSX.Element {
+function Main(movies: ConnectedComponentProps): JSX.Element {
+  const {backgroundImage, name} = movies.promoMovie;
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={movies.promoMovie.backgroundImage} alt={movies.promoMovie.name}/>
+          <img src={backgroundImage} alt={name}/>
         </div>
         <h1 className="visually-hidden">WTW</h1>
 
@@ -30,7 +29,7 @@ function Main(movies: MainProps): JSX.Element {
           text={' '}
         />
 
-        <Promo movie = {movies.promoMovie}/>
+        <Promo />
       </section>
 
       <div className="page-content">
@@ -39,13 +38,10 @@ function Main(movies: MainProps): JSX.Element {
             Catalog
           </h2>
 
-          <GenresList
-            films={movies.movies}
-          />
+          <GenresList />
 
           <FilmsList
-            movies={movies.movies}
-            countFilms = {COUNT_RENDER_FILMS_LIST}
+            countFilms = {COUNT_RENDER_MOVIES_LIST}
             isFavorite= {false}
           />
 
@@ -61,4 +57,4 @@ function Main(movies: MainProps): JSX.Element {
   );
 }
 
-export default Main;
+export default connector(Main);

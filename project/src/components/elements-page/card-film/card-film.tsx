@@ -1,4 +1,4 @@
-import {SIZES} from './consts';
+import {SIZES} from './constants';
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
 import {MovieProps} from '../../../types/movie';

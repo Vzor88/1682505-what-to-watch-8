@@ -1,13 +1,13 @@
 import Footer from '../../elements-page/footer/footer';
-import {MovieProps} from '../../../types/movie';
 import FilmsList from '../../elements-page/films-list/films-list';
 import Header from '../../elements-page/header/header';
+import {connect, ConnectedProps} from 'react-redux';
+import {mapStateToProps} from './constants';
 
-type MyFilmProps = {
-  movies: MovieProps[];
-}
+const connector = connect(mapStateToProps);
+type ConnectedComponentProps = ConnectedProps<typeof connector>;
 
-function MyFilm(movies: MyFilmProps): JSX.Element {
+function MyFilm(movies: ConnectedComponentProps): JSX.Element {
   return (
     <div className="user-page">
 
@@ -23,7 +23,7 @@ function MyFilm(movies: MyFilmProps): JSX.Element {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <FilmsList movies={movies.movies} countFilms={movies.movies.length} isFavorite/>
+        <FilmsList countFilms={movies.movies.length} isFavorite/>
       </section>
 
       <Footer />
@@ -32,4 +32,5 @@ function MyFilm(movies: MyFilmProps): JSX.Element {
   );
 }
 
-export default MyFilm;
+export {MyFilm};
+export default connector(MyFilm);

@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {MovieProps} from '../../../types/movie';
-import {SIZES} from '../card-film/consts';
+import {SIZES} from '../card-film/constants';
 
 type VideoPlayerProps = {
   film: MovieProps;
