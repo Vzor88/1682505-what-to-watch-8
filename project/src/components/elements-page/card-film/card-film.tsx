@@ -5,12 +5,12 @@ import {MovieProps} from '../../../types/movie';
 import VideoPlayer from '../video-player/video-player';
 
 type CardFilmProps = {
-  film: MovieProps;
+  movie: MovieProps;
   updateCardFilm: (movie: number) => void;
 }
 
 function CardFilm(props: CardFilmProps): JSX.Element {
-  const {previewImage, name, id} = props.film;
+  const {previewImage, name, id} = props.movie;
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   function handleHoverCardFilm():void {
@@ -22,7 +22,7 @@ function CardFilm(props: CardFilmProps): JSX.Element {
     <article className="small-film-card catalog__films-card" onMouseEnter={handleHoverCardFilm} onMouseLeave={()=>setIsPlaying(false)}>
       {
         isPlaying
-          ? <VideoPlayer film={props.film} isPlay={isPlaying}/>
+          ? <VideoPlayer film={props.movie} isPlay={isPlaying}/>
           :
           <div className="small-film-card__image">
             <img src={previewImage} alt={name} width={SIZES.width} height={SIZES.height}/>

@@ -13,7 +13,7 @@ export type MovieProps = {
   director: string,
   starring: string[],
   runTime: number,
-  genre: string | string[],
+  genre: string,
   released: number,
   isFavorite: boolean
 }

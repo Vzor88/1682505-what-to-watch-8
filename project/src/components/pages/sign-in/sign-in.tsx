@@ -5,7 +5,14 @@ function SignIn(): JSX.Element {
   return (
     <div className="user-page">
 
-      <Header isLight={false} isBreadcrumbs={false} isMiddleScreen text={'Sign in'}/>
+      <Header
+        isLight={false}
+        isBreadcrumbs={false}
+        isMiddleScreen
+        text={'Sign in'}
+        id={' '}
+        name={' '}
+      />
 
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form">

@@ -6,7 +6,14 @@ function NotFoundScreen(): JSX.Element {
   return (
     <div className="user-page">
 
-      <Header isLight={false} isBreadcrumbs={false} isMiddleScreen text={'Unknown page'}/>
+      <Header
+        isLight={false}
+        isBreadcrumbs={false}
+        isMiddleScreen
+        text={'Unknown page'}
+        id={' '}
+        name={' '}
+      />
 
       <div className="sign-in user-page__content">
         <section className="page__screen">

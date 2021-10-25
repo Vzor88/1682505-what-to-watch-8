@@ -1,6 +1,8 @@
 import React from 'react';
 import CardFilm from '../card-film/card-film';
 import {MovieProps} from '../../../types/movie';
+import {State} from '../../../types/state';
+import {connect, ConnectedProps} from 'react-redux';
 
 type FilmsListProps = {
   movies: MovieProps[];
@@ -8,7 +10,15 @@ type FilmsListProps = {
   isFavorite: boolean;
 }
 
-function FilmsList(movies: FilmsListProps): JSX.Element {
+const mapStateToProps = ({filteredMovies}: State) => ({
+  filteredMovies,
+});
+
+const connector = connect(mapStateToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux & FilmsListProps;
+
+function FilmsList(movies: ConnectedComponentProps): JSX.Element {
   const [, setActiveCard] = React.useState<number>(0);
 
   function handleActiveMovie(id: number): void {
@@ -18,17 +28,17 @@ function FilmsList(movies: FilmsListProps): JSX.Element {
   if(movies.isFavorite){
     return (
       <div className="catalog__films-list">
-        {movies.movies.map((film:MovieProps) => film.isFavorite ? <CardFilm key={film.id} film={film} updateCardFilm={handleActiveMovie} /> : ' ')}
+        {movies.movies.map((movie:MovieProps) => movie.isFavorite ? <CardFilm key={movie.id} movie={movie} updateCardFilm={handleActiveMovie} /> : ' ')}
       </div>
     );
   } else {
     return (
       <div className="catalog__films-list">
-        {movies.movies.slice(0, movies.countFilms).map((film:MovieProps) => <CardFilm key={film.id} film={film} updateCardFilm={handleActiveMovie} />)}
+        {movies.filteredMovies.slice(0, movies.countFilms).map((movie)=> <CardFilm key={movie.id} movie={movie} updateCardFilm={handleActiveMovie} />)}
       </div>
     );
   }
 }
 
-
-export default FilmsList;
+export {FilmsList};
+export default connector(FilmsList);

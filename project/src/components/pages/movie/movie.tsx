@@ -23,7 +23,14 @@ function Movie(movies: MoviePageProps): JSX.Element {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <Header isLight={false} isBreadcrumbs={false} isMiddleScreen={false}/>
+          <Header
+            isLight={false}
+            isBreadcrumbs={false}
+            isMiddleScreen={false}
+            id={' '}
+            name={' '}
+            text={' '}
+          />
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
