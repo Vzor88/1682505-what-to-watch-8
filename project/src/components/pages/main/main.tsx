@@ -3,15 +3,26 @@ import GenresList from '../../elements-page/genres-list/genres-list';
 import FilmsList from '../../elements-page/films-list/films-list';
 import Promo from '../../elements-page/promo/promo';
 import Header from '../../elements-page/header/header';
-import {COUNT_RENDER_MOVIES_LIST} from './constants';
 import {connect, ConnectedProps} from 'react-redux';
-import {mapStateToProps} from './constants';
+import {INITIAL_COUNT_FILMS, mapStateToProps} from './constants';
+import ShowMore from '../../elements-page/show-more/show-more';
+import {useState} from 'react';
 
 const connector = connect(mapStateToProps);
 type ConnectedComponentProps = ConnectedProps<typeof connector>;
 
 function Main(movies: ConnectedComponentProps): JSX.Element {
+  const [countMore, setCountMore] = useState<number>(INITIAL_COUNT_FILMS);
   const {backgroundImage, name} = movies.promoMovie;
+
+  function onLoadMore():void {
+    setCountMore((count) => INITIAL_COUNT_FILMS + count);
+  }
+
+  function resetLoadMore() {
+    setCountMore(INITIAL_COUNT_FILMS);
+  }
+
   return (
     <>
       <section className="film-card">
@@ -38,16 +49,15 @@ function Main(movies: ConnectedComponentProps): JSX.Element {
             Catalog
           </h2>
 
-          <GenresList />
+          <GenresList resetLoadMore={resetLoadMore}/>
 
           <FilmsList
-            countFilms = {COUNT_RENDER_MOVIES_LIST}
-            isFavorite= {false}
+            countFilms = {countMore}
+            isFavorite = {false}
           />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {countMore < movies.filteredMovies.length ? <ShowMore onLoadMore={onLoadMore}/> : ' '}
+
         </section>
 
         <Footer />

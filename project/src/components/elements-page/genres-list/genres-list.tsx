@@ -4,8 +4,13 @@ import {connect, ConnectedProps} from 'react-redux';
 import {mapDispatchToProps, mapStateToProps} from './constants';
 import {determinationGenresList} from './selectors';
 
+type GenreListProps = {
+  resetLoadMore:() => void;
+}
+
 const connector = connect(mapStateToProps, mapDispatchToProps);
-type ConnectedComponentProps = ConnectedProps<typeof connector>;
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux & GenreListProps;
 
 function GenresList(movies: ConnectedComponentProps): JSX.Element {
   const [activeGenre, setActiveGenre] = React.useState<string>('All genres');
@@ -14,6 +19,7 @@ function GenresList(movies: ConnectedComponentProps): JSX.Element {
   function handleActiveGenre(nameGenre: string): void {
     setActiveGenre(nameGenre);
     movies.onChangeGenre(nameGenre);
+    movies.resetLoadMore();
   }
 
   return (
