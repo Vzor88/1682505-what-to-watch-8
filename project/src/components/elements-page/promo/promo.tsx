@@ -1,6 +1,10 @@
 import {SIZES} from '../../../constants';
 import {connect, ConnectedProps} from 'react-redux';
-import {mapStateToProps} from './constants';
+import {State} from '../../../types/state';
+
+const mapStateToProps = ({promoMovie}: State) => ({
+  promoMovie,
+});
 
 const connector = connect(mapStateToProps);
 type ConnectedComponentProps = ConnectedProps<typeof connector>;

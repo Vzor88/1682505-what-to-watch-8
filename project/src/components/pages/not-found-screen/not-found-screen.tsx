@@ -11,8 +11,6 @@ function NotFoundScreen(): JSX.Element {
         isBreadcrumbs={false}
         isMiddleScreen
         text={'Unknown page'}
-        id={' '}
-        name={' '}
       />
 
       <div className="sign-in user-page__content">

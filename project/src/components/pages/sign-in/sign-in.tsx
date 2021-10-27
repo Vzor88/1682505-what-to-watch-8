@@ -10,8 +10,6 @@ function SignIn(): JSX.Element {
         isBreadcrumbs={false}
         isMiddleScreen
         text={'Sign in'}
-        id={' '}
-        name={' '}
       />
 
       <div className="sign-in user-page__content">

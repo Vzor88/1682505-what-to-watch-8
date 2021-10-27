@@ -2,7 +2,11 @@ import Footer from '../../elements-page/footer/footer';
 import FilmsList from '../../elements-page/films-list/films-list';
 import Header from '../../elements-page/header/header';
 import {connect, ConnectedProps} from 'react-redux';
-import {mapStateToProps} from './constants';
+import {State} from '../../../types/state';
+
+const mapStateToProps = ({movies}: State) => ({
+  movies,
+});
 
 const connector = connect(mapStateToProps);
 type ConnectedComponentProps = ConnectedProps<typeof connector>;
@@ -16,8 +20,6 @@ function MyFilm(movies: ConnectedComponentProps): JSX.Element {
         isBreadcrumbs={false}
         isMiddleScreen
         text={'My list'}
-        id={' '}
-        name={' '}
       />
 
       <section className="catalog">

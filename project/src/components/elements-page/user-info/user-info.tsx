@@ -1,10 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-
-const SIZES_AVATAR = {
-  WIDTH: 63,
-  HEIGHT: 63,
-};
+import {SIZES_AVATAR} from './constants';
 
 function UserInfo(): JSX.Element {
   const url = ' ';

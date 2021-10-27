@@ -8,7 +8,11 @@ import FilmsList from '../../elements-page/films-list/films-list';
 import Header from '../../elements-page/header/header';
 import MovieTabs from '../../elements-page/movie-tabs/movie-tabs';
 import {connect, ConnectedProps} from 'react-redux';
-import {mapStateToProps} from './constants';
+import {State} from '../../../types/state';
+
+const mapStateToProps = ({movies}: State) => ({
+  movies,
+});
 
 const connector = connect(mapStateToProps);
 type ConnectedComponentProps = ConnectedProps<typeof connector>;
@@ -32,9 +36,6 @@ function Movie(movies: ConnectedComponentProps): JSX.Element {
             isLight={false}
             isBreadcrumbs={false}
             isMiddleScreen={false}
-            id={' '}
-            name={' '}
-            text={' '}
           />
 
           <div className="film-card__wrap">

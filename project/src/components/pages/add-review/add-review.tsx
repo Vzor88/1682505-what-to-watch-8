@@ -3,13 +3,17 @@ import React, {ChangeEvent} from 'react';
 import {useParams} from 'react-router-dom';
 import Star from '../../elements-page/star/star';
 import Header from '../../elements-page/header/header';
-import {generateCountStars} from './constants';
+import {generateCountStars} from './utils';
 import {connect, ConnectedProps} from 'react-redux';
-import {mapStateToProps} from '../my-list/constants';
+import {State} from '../../../types/state';
 
 type ParamsProps = {
   id: string;
 }
+
+const mapStateToProps = ({movies}: State) => ({
+  movies,
+});
 
 const connector = connect(mapStateToProps);
 type ConnectedComponentProps = ConnectedProps<typeof connector>;
@@ -29,7 +33,7 @@ function AddReview(movies: ConnectedComponentProps): JSX.Element {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header isLight={false} isBreadcrumbs isMiddleScreen={false} name={name} id={id} text={' '}/>
+        <Header isLight={false} isBreadcrumbs isMiddleScreen={false} name={name} id={id}/>
 
         <div className="film-card__poster film-card__poster--small">
           <img src={posterImage} alt={`${name} poster`} width={SIZES.POSTER.WIDTH} height={SIZES.POSTER.HEIGHT}/>

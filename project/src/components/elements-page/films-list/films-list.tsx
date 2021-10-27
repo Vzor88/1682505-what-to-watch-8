@@ -2,12 +2,18 @@ import React from 'react';
 import CardFilm from '../card-film/card-film';
 import {MovieProps} from '../../../types/movie';
 import {connect, ConnectedProps} from 'react-redux';
-import {mapStateToProps} from './constants';
+import {State} from '../../../types/state';
+import {getFilteredMovies} from '../../../selectors';
 
 type FilmsListProps = {
   countFilms: number;
   isFavorite: boolean;
 }
+
+const mapStateToProps = ({genre, movies}: State) => ({
+  movies,
+  genre,
+});
 
 const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
@@ -29,7 +35,7 @@ function FilmsList(movies: ConnectedComponentProps): JSX.Element {
   } else {
     return (
       <div className="catalog__films-list">
-        {movies.filteredMovies.slice(0, movies.countFilms).map((movie)=> <CardFilm key={movie.id} movie={movie} updateCardFilm={handleActiveMovie} />)}
+        {getFilteredMovies(movies.movies, movies.genre).slice(0, movies.countFilms).map((movie)=> <CardFilm key={movie.id} movie={movie} updateCardFilm={handleActiveMovie} />)}
       </div>
     );
   }

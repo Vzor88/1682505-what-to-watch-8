@@ -3,3 +3,5 @@ export const itemsTabs = [
   {title: 'Details'},
   {title: 'Reviews'},
 ];
+
+export const COUNT_SHORT_LIST_STARRING = 4;

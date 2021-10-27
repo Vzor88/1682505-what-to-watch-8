@@ -1,12 +1,26 @@
 import GenreItem from '../genre-item/genre-item';
 import React from 'react';
 import {connect, ConnectedProps} from 'react-redux';
-import {mapDispatchToProps, mapStateToProps} from './constants';
 import {determinationGenresList} from './selectors';
+import {State} from '../../../types/state';
+import {Dispatch} from 'redux';
+import {Actions} from './action/action-type';
+import {changeGenre, resetGenre} from './action/action';
 
 type GenreListProps = {
   resetLoadMore:() => void;
 }
+
+const mapStateToProps = ({genre, movies}: State) => ({
+  genre,
+  movies,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<Actions>):{ onChangeGenre(genre: string): void } => ({
+  onChangeGenre(genre){
+    genre === 'All genres' ? dispatch(resetGenre()) : dispatch(changeGenre(genre));
+  },
+});
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;

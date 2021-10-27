@@ -1,4 +1,4 @@
-import {COUNT_SHORT_LIST_STARRING} from '../../pages/movie/constants';
+import {COUNT_SHORT_LIST_STARRING} from './constants';
 import {DATA_COMMENTS} from '../../../mock/comments';
 import Comment from '../../elements-page/comment/comment';
 import {MovieProps} from '../../../types/movie';

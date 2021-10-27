@@ -6,9 +6,9 @@ type HeaderProps = {
   isLight: boolean;
   isBreadcrumbs: boolean;
   isMiddleScreen: boolean;
-  id: string;
-  name: string;
-  text: string;
+  id?: string;
+  name?: string;
+  text?: string;
 }
 
 function Header(props:HeaderProps): JSX.Element {
@@ -18,7 +18,7 @@ function Header(props:HeaderProps): JSX.Element {
 
       <Logo isLight={isLight}/>
 
-      {isBreadcrumbs ? <Breadcrumbs id={id} name={name}/> : ' '}
+      {isBreadcrumbs && id && name ? <Breadcrumbs id={id} name={name}/> : ' '}
       {isMiddleScreen ? <h1 className="page-title user-page__title">{text}</h1> : ' '}
 
       <UserInfo />

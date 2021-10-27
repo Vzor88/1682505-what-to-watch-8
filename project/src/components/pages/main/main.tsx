@@ -4,9 +4,17 @@ import FilmsList from '../../elements-page/films-list/films-list';
 import Promo from '../../elements-page/promo/promo';
 import Header from '../../elements-page/header/header';
 import {connect, ConnectedProps} from 'react-redux';
-import {INITIAL_COUNT_FILMS, mapStateToProps} from './constants';
+import {INITIAL_COUNT_FILMS} from './constants';
 import ShowMore from '../../elements-page/show-more/show-more';
 import {useState} from 'react';
+import {State} from '../../../types/state';
+import {getFilteredMovies} from '../../../selectors';
+
+const mapStateToProps = ({movies, promoMovie, genre}: State) => ({
+  movies,
+  promoMovie,
+  genre,
+});
 
 const connector = connect(mapStateToProps);
 type ConnectedComponentProps = ConnectedProps<typeof connector>;
@@ -35,9 +43,6 @@ function Main(movies: ConnectedComponentProps): JSX.Element {
           isLight={false}
           isBreadcrumbs={false}
           isMiddleScreen={false}
-          id={' '}
-          name={' '}
-          text={' '}
         />
 
         <Promo />
@@ -56,7 +61,7 @@ function Main(movies: ConnectedComponentProps): JSX.Element {
             isFavorite = {false}
           />
 
-          {countMore < movies.filteredMovies.length ? <ShowMore onLoadMore={onLoadMore}/> : ' '}
+          {countMore < getFilteredMovies(movies.movies, movies.genre).length ? <ShowMore onLoadMore={onLoadMore}/> : ' '}
 
         </section>
 

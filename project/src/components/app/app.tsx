@@ -13,21 +13,13 @@ function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path={AppRoute.Main}>
-          <Main />
-        </Route>
-        <Route exact path={AppRoute.Film}>
-          <Movie />
-        </Route>
-        <PrivateRoute exact path={AppRoute.MyList} authorizationStatus={AuthorizationStatus.Auth}>
-          <MyFilm />
-        </PrivateRoute>
-        <PrivateRoute exact path={AppRoute.AddReview} authorizationStatus={AuthorizationStatus.Auth}>
-          <AddReview />
-        </PrivateRoute>
+        <Route component={Main} exact path={AppRoute.Main}/>
+        <Route component={Movie} exact path={AppRoute.Film}/>
         <Route component={Player} exact path={AppRoute.Player}/>
         <Route component={SignIn} exact path={AppRoute.SignIn}/>
         <Route component={NotFoundScreen}/>
+        <PrivateRoute component={MyFilm} exact path={AppRoute.MyList} authorizationStatus={AuthorizationStatus.Auth}/>
+        <PrivateRoute component={AddReview} exact path={AppRoute.AddReview} authorizationStatus={AuthorizationStatus.Auth}/>
       </Switch>
     </BrowserRouter>
   );
