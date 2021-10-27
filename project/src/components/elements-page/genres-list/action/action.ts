@@ -1,4 +1,4 @@
-import {ActionType, ChangeGenreAction, ResetGenreAction} from '../types/action';
+import {ActionType, ChangeGenreAction, ResetGenreAction} from './action-type';
 
 export const changeGenre = (name: string): ChangeGenreAction => ({
   type: ActionType.ChangeGenre,

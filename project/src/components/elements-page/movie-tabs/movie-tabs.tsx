@@ -1,13 +1,7 @@
-/* eslint-disable no-console */
 import {MovieProps} from '../../../types/movie';
 import React, {useState} from 'react';
 import MovieTabsContent from './movie-tabs-content';
-
-const itemsTabs = [
-  {title: 'Overview'},
-  {title: 'Details'},
-  {title: 'Reviews'},
-];
+import {itemsTabs} from './constants';
 
 type MovieTabsProps = {
   movie:MovieProps;

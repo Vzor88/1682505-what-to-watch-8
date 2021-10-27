@@ -1,14 +1,19 @@
-import {SIZES} from '../../../consts';
-import {COUNT_RENDER_FILMS_LIST} from './consts';
+import {SIZES} from '../../../constants';
+import {COUNT_RENDER_MOVIES_LIST} from './constants';
 import {MovieProps} from '../../../types/movie';
-import {MoviePageProps, ParamsProps} from './type';
+import {ParamsProps} from './type';
 import Footer from '../../elements-page/footer/footer';
 import {Link, useParams} from 'react-router-dom';
 import FilmsList from '../../elements-page/films-list/films-list';
 import Header from '../../elements-page/header/header';
 import MovieTabs from '../../elements-page/movie-tabs/movie-tabs';
+import {connect, ConnectedProps} from 'react-redux';
+import {mapStateToProps} from './constants';
 
-function Movie(movies: MoviePageProps): JSX.Element {
+const connector = connect(mapStateToProps);
+type ConnectedComponentProps = ConnectedProps<typeof connector>;
+
+function Movie(movies: ConnectedComponentProps): JSX.Element {
   const {id}: ParamsProps = useParams();
   const movie = movies.movies.filter((item:MovieProps) => item.id.toString() === id)[0];
   const {name, posterImage, backgroundImage, genre, released} = movie;
@@ -80,8 +85,7 @@ function Movie(movies: MoviePageProps): JSX.Element {
           </h2>
 
           <FilmsList
-            movies = {movies.movies}
-            countFilms={COUNT_RENDER_FILMS_LIST}
+            countFilms={COUNT_RENDER_MOVIES_LIST}
             isFavorite={false}
           />
 
@@ -93,5 +97,5 @@ function Movie(movies: MoviePageProps): JSX.Element {
     </>
   );
 }
-
-export default Movie;
+export {Movie};
+export default connector(Movie);

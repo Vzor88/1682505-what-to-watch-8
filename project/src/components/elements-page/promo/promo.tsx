@@ -1,12 +1,12 @@
-import {SIZES} from '../../../consts';
-import {MovieProps} from '../../../types/movie';
+import {SIZES} from '../../../constants';
+import {connect, ConnectedProps} from 'react-redux';
+import {mapStateToProps} from './constants';
 
-type PromoProps = {
-  movie: MovieProps;
-}
+const connector = connect(mapStateToProps);
+type ConnectedComponentProps = ConnectedProps<typeof connector>;
 
-function Promo(movie: PromoProps): JSX.Element {
-  const {posterImage, name, genre, released} = movie.movie;
+function Promo(movie: ConnectedComponentProps): JSX.Element {
+  const {posterImage, name, genre, released} = movie.promoMovie;
   return (
     <div className="film-card__wrap">
       <div className="film-card__info">
@@ -39,4 +39,5 @@ function Promo(movie: PromoProps): JSX.Element {
   );
 }
 
-export default Promo;
+export {Promo};
+export default connector(Promo);

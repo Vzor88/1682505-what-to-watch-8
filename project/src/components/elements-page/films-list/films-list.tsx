@@ -1,18 +1,13 @@
 import React from 'react';
 import CardFilm from '../card-film/card-film';
 import {MovieProps} from '../../../types/movie';
-import {State} from '../../../types/state';
 import {connect, ConnectedProps} from 'react-redux';
+import {mapStateToProps} from './constants';
 
 type FilmsListProps = {
-  movies: MovieProps[];
   countFilms: number;
   isFavorite: boolean;
 }
-
-const mapStateToProps = ({filteredMovies}: State) => ({
-  filteredMovies,
-});
 
 const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;

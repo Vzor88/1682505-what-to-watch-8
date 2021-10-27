@@ -1,18 +1,9 @@
-import {COUNT_SHORT_LIST_STARRING} from '../../pages/movie/consts';
+import {COUNT_SHORT_LIST_STARRING} from '../../pages/movie/constants';
 import {DATA_COMMENTS} from '../../../mock/comments';
 import Comment from '../../elements-page/comment/comment';
 import {MovieProps} from '../../../types/movie';
 import React from 'react';
-
-const generateDuration = (minutes: number): string => {
-  let hours = 0;
-  while(minutes > 60) {
-    hours += 1;
-    minutes -= 60;
-  }
-
-  return !hours  ? `${minutes}m` : `${hours}h ${minutes}m`;
-};
+import {generateDuration} from './selectors';
 
 type MovieTabsContentProps = {
   movie:MovieProps;

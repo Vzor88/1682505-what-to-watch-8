@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import {FLOATING_POINT} from './consts';
+import {FLOATING_POINT} from './constants';
 import {CommentProps} from '../../../types/comment';
 
 function Comment(props: Omit<CommentProps, 'id'>): JSX.Element {
